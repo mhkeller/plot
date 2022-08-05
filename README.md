@@ -26,7 +26,7 @@ drawPlot(chart, 'chart.png', {
 *Arguments*
 
 * **plotFunction** `{Function}`
-  * A that renders HTML. **(required)**
+  * A function that renders HTML. **(required)**
 * **outPath** `{String='chart.png'}`
   * A filepath to write the image.
 * **options** `{Object}`
