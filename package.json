@@ -1,0 +1,37 @@
+{
+  "name": "@mhkeller/plot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mhkeller/plot.git"
+  },
+  "keywords": [],
+  "author": "Michael Keller",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mhkeller/plot/issues"
+  },
+  "homepage": "https://github.com/mhkeller/plot#readme",
+  "dependencies": {
+    "@observablehq/plot": "^0.5.2",
+    "arquero": "^5.0.0",
+    "jsdom": "^20.0.0",
+    "playwright": "^1.24.2",
+    "wsk-notify": "^1.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/eslint-parser": "^7.17.0",
+    "eslint": "^8.21.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.26.0",
+    "indian-ocean": "^4.0.3",
+    "prettier": "^2.5.1"
+  }
+}
