@@ -18,7 +18,6 @@
   "homepage": "https://github.com/mhkeller/plot#readme",
   "dependencies": {
     "@observablehq/plot": "^0.5.2",
-    "arquero": "^5.0.0",
     "jsdom": "^20.0.0",
     "playwright": "^1.24.2",
     "wsk-notify": "^1.0.0"
