@@ -1,5 +1,5 @@
 import { readDataSync } from 'indian-ocean';
-import drawSingleScaleHistogram from '../lib/drawSingleScaleHistogram.js';
+import drawHistograms from '../lib/drawHistograms.js';
 
 const data = readDataSync('./test/data/groups.tsv');
 
@@ -11,9 +11,10 @@ data.forEach(d => {
 	});
 });
 
-await drawSingleScaleHistogram(data, {
+await drawHistograms(data, {
 	facetBy: ['minor_group'],
 	fields,
 	fill: 'minor_group',
-	outDir: 'test/tmp/drawSingleScaleHistogram'
+	outDir: 'test/tmp/drawSingleScaleHistogram',
+	breakoutFields: false
 });
