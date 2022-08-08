@@ -66,7 +66,7 @@ drawHistogram(data, {
   * Filenames are generated according to the convention: 
     * With a `name` supplied: `${name}_by__${facet}_${field}.png`;
     * With no `name` supplied: `by__${facet}_${field}.png`;
-    * If `breakoutFields=false` the final `_${field}` suffix is omitted.
+    * If `breakoutFields=false` `_${field}` is a concatenation of all fields separated by a `|` character.
 * **options.fill** `{String}`
   * A hex code or field name. Defaults to `'#000'`.
 * **options.css** `{String}`
