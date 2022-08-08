@@ -66,11 +66,12 @@ drawHistogram(data, {
   * Filenames are generated according to the convention: 
     * With a `name` supplied: `${name}_by__${facet}_${field}.png`;
     * With no `name` supplied: `by__${facet}_${field}.png`;
+    * If `breakoutFields=false` the final `_${field}` suffix is omitted.
 * **options.fill** `{String}`
   * A hex code or field name. Defaults to `'#000'`.
 * **options.css** `{String}`
   * Any CSS that you want injected into the page to tweak styles.
-* **options.breakoutFields** `{Boolean=false}`
+* **options.breakoutFields** `{Boolean=true}`
   * For each field passed into `options.fields` write out a separate PNG. Set this to false to put everything on the same scale.
   
 ## Examples
