@@ -70,6 +70,8 @@ drawHistogram(data, {
   * A hex code or field name. Defaults to `'#000'`.
 * **options.css** `{String}`
   * Any CSS that you want injected into the page to tweak styles.
+* **options.breakoutFields** `{Boolean=false}`
+  * For each field passed into `options.fields` write out a separate PNG. Set this to false to put everything on the same scale.
   
 ## Examples
 
