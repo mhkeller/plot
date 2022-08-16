@@ -1,7 +1,6 @@
 import { readDataSync } from 'indian-ocean';
 import * as Plot from '@observablehq/plot';
 import * as aq from 'arquero';
-import { utcDay } from 'd3-time'
 
 import drawPlot from '../lib/drawPlot.js';
 
@@ -13,8 +12,6 @@ const data = aq.from(events)
 	.rollup({value: d => aq.op.sum(d.price_in_usd), count: aq.op.count()})
 	.orderby('date', 'brand')
 	.objects();
-
-console.log(data);
 
 // data.forEach(d => {
 // 	d.date = utcFormat('%a')(d.date);
