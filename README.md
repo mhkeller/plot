@@ -18,6 +18,27 @@ A generic function to render HTML and screenshot it.
 ```js
 import { drawPlot } from '@mhkeller/plot`;
 
+// Create an async function that returns a plot
+const chart = async () => Plot.plot({
+  marks: [
+    Plot.rectY(
+      data, 
+      Plot.binX(
+        { y: 'count' }, 
+        {
+          x: 'date', 
+          y: 'value', 
+          fill: 'blue', 
+          thresholds: 10
+        }
+      )
+    )
+  ], 
+  marginLeft: 100, 
+  height: 200,
+  width: 554
+});
+
 drawPlot(chart, 'chart.png', { 
  css: 'svg{overflow:visible;}' 
 });
@@ -25,12 +46,12 @@ drawPlot(chart, 'chart.png', {
 
 *Arguments*
 
-* **plotFunction** `{Function}`
-  * A function that renders HTML. **(required)**
-* **outPath** `{String='chart.png'}`
-  * A filepath to write the image.
+* **chart** `{Function}`
+  * An async function that returns a function that returns HTML. **(required)**
 * **options** `{Object}`
-  * The third argument is an options object. 
+  * An options object.
+* **options.outPath** `{String='chart.png'}`
+  * A filepath to write the image.
 * **options.css** `{String}`
   * Any CSS that you want injected into the page to tweak styles.
 
