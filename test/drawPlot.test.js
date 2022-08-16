@@ -15,25 +15,29 @@ const data = aq.from(events)
 	.orderby('date', 'brand')
 	.objects();
 
+// data.forEach(d => {
+// 	d.date = utcFormat('%a')(d.date);
+// })
+
 const chart = async () => Plot.plot({
 	marks: [
-		Plot.barY(
+		Plot.rectY(
 			data,
-			Plot.groupX(
-				{ y: 'sum' },
-				{ x: d => utcFormat('%a')(d.date), y: 'value', stroke: 'brand' }
+			Plot.binX(
+				{ y: 'count' },
+				{
+					x: 'date',
+					y: 'value',
+					fill: 'blue',
+					fillOpacity: 0.5,
+					thresholds: 10
+				}
 			)
 		)
 	],
-	width: 554,
-	height: 130,
-	x: { ticks: 3, domain: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] },
-	marginLeft: 50,
-	color: {
-		legend: true,
-		width: 554,
-		columns: '120px'
-	}
+	marginLeft: 100,
+	height: 200,
+	width: 578
 })
 
 await drawPlot(chart, {
