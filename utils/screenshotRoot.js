@@ -19,5 +19,5 @@ export default async function screenshotRoot(browser, root, { outPath, css }) {
 	if (css) {
 		await page.addStyleTag({ content: css });
 	}
-	await page.locator('body > svg').screenshot({ path: outPath });
+	await page.locator('body > *').screenshot({ path: outPath });
 }
