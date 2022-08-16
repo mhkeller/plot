@@ -88,12 +88,15 @@ drawHistogram(data, {
     * With a `name` supplied: `${name}_by__${facet}_${field}.png`;
     * With no `name` supplied: `by__${facet}_${field}.png`;
     * If `breakoutFields=false` `_${field}` is a concatenation of all fields separated by a `|` character.
+    * If `columns=false`, the file name will end in `_lines.png`.
 * **options.fill** `{String}`
   * A hex code or field name. Defaults to `'#000'`.
 * **options.css** `{String}`
   * Any CSS that you want injected into the page to tweak styles.
 * **options.breakoutFields** `{Boolean=true}`
   * For each field passed into `options.fields` write out a separate PNG. Set this to false to put everything on the same scale.
+* **options.columns** `{Boolean=true}`
+  * Draw the histogram as columns, like a regular histogram. If this is `false`, just draw semi-opaque lines, which can be useful for seeing density.
   
 ## Examples
 
