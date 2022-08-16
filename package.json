@@ -26,8 +26,6 @@
     "@babel/eslint-parser": "^7.17.0",
     "@observablehq/plot": "^0.5.2",
     "arquero": "^5.1.0",
-    "d3-time": "^3.0.0",
-    "d3-time-format": "^4.1.0",
     "eslint": "^8.21.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-base": "^15.0.0",
