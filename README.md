@@ -52,6 +52,8 @@ drawPlot(chart, 'chart.png', {
   * An options object.
 * **options.outPath** `{String='chart.png'}`
   * A filepath to write the image.
+* **options.headless** `{Boolean=true}`
+  * Hide the browser window.
 * **options.css** `{String}`
   * Any CSS that you want injected into the page to tweak styles.
 
@@ -91,6 +93,8 @@ drawHistogram(data, {
     * If `columns=false`, the file name will end in `_lines.png`.
 * **options.fill** `{String}`
   * A hex code or field name. Defaults to `'#000'`.
+* **options.headless** `{Boolean=true}`
+  * Hide the browser window.
 * **options.css** `{String}`
   * Any CSS that you want injected into the page to tweak styles.
 * **options.breakoutFields** `{Boolean=true}`
