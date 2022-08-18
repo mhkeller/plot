@@ -6,7 +6,9 @@ Plot
 ## Installing (not yet on npm)
 
 ```
-npm install @mhkeller/plot
+npm install mhkeller/plot
+# later when it's on npm, you can do npm install @mhkeller/plot
+
 ```
 
 ## Functions
