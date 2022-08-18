@@ -19,7 +19,7 @@ A generic function to render HTML and screenshot it.
 ```js
 import { drawPlot } from '@mhkeller/plot`;
 
-// Create an async function that returns a plot
+// Create an async function that returns html
 const chart = async () => Plot.plot({
   marks: [
     Plot.rectY(
