@@ -52,12 +52,12 @@ drawPlot(chart, 'chart.png', {
   * An options object.
 * **options.outPath** `{String='chart.png'}`
   * A filepath to write the image.
-* **options.headless** `{Boolean=true}`
-  * Hide the browser window.
+* **options.view** `{Boolean=false}`
+  * If true, show the chart in a popup window.
 * **options.css** `{String}`
   * Any CSS that you want injected into the page to tweak styles.
 
-**drawHistogram(** `data: Array, { facetBy: String[], fields: String{}, outDir: String[, name: String, fill: String='#000', css: String] } }` **)**
+**drawHistogram(** `data: Array, { facetBy: String[], fields: String{}, outDir: String[, name: String, fill: String='#000', css: String, view: false] } }` **)**
 
 A more specific function that takes data, a list of fields to facet by and a list of fields to compute values for. Writes a screenshot.
 
@@ -93,8 +93,8 @@ drawHistogram(data, {
     * If `columns=false`, the file name will end in `_lines.png`.
 * **options.fill** `{String}`
   * A hex code or field name. Defaults to `'#000'`.
-* **options.headless** `{Boolean=true}`
-  * Hide the browser window.
+* **options.view** `{Boolean=false}`
+  * If true, show the chart in a popup window.
 * **options.css** `{String}`
   * Any CSS that you want injected into the page to tweak styles.
 * **options.breakoutFields** `{Boolean=true}`
