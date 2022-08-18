@@ -11,7 +11,7 @@ npm install @mhkeller/plot
 
 ## Functions
 
-**drawPlot(** `plotFunction: Function, outPath: String[, { css: String }]` **)**
+**drawPlot(** `plotFunction: Function, { outPath: String[, css: String] }` **)**
 
 A generic function to render HTML and screenshot it. 
 
@@ -39,7 +39,8 @@ const chart = async () => Plot.plot({
   width: 554
 });
 
-drawPlot(chart, 'chart.png', { 
+drawPlot(chart, { 
+ outPath: 'chart.png',
  css: 'svg{overflow:visible;}' 
 });
 ```
