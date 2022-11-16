@@ -10,6 +10,8 @@ export default async function render(browser, chart, { outPath, css, view, title
 	 */
 	const root = await withJsdom(chart)();
 
+	console.log(root.querySelector('body > *').getBoundingClientRect());
+
 	// eslint-disable-next-line no-restricted-syntax
 	for (const svg of root.tagName === 'svg' ? [root] : root.querySelectorAll('svg')) {
 	  svg.setAttributeNS('http://www.w3.org/2000/xmlns/', 'xmlns', 'http://www.w3.org/2000/svg');
