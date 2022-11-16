@@ -40,5 +40,6 @@ const chart = async () => Plot.plot({
 
 await drawPlot(chart, {
 	outPath: 'test/tmp/line-plot.png',
-	headless: false
+	view: true,
+	title: 'Line chart'
 });

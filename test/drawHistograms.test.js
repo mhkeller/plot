@@ -15,5 +15,6 @@ await drawHistograms(data, {
 	facetBy: ['major_group', 'minor_group'],
 	fields,
 	fill: 'minor_group',
-	outDir: 'test/tmp/drawHistograms'
+	outDir: 'test/tmp/drawHistograms',
+	view: true
 });

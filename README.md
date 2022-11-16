@@ -56,6 +56,8 @@ drawPlot(chart, {
   * A filepath to write the image.
 * **options.view** `{Boolean=false}`
   * If true, show the chart in a popup window.
+* **options.title** `{String='My chart'}`
+  * If `view` is true, add a title to the window's page.
 * **options.css** `{String}`
   * Any CSS that you want injected into the page to tweak styles.
 
@@ -97,6 +99,8 @@ drawHistogram(data, {
   * A hex code or field name. Defaults to `'#000'`.
 * **options.view** `{Boolean=false}`
   * If true, show the chart in a popup window.
+* **options.title** `{String='My chart'}`
+  * If `view` is true, add a title to the window's page.
 * **options.css** `{String}`
   * Any CSS that you want injected into the page to tweak styles.
 * **options.breakoutFields** `{Boolean=true}`
