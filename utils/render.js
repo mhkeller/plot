@@ -29,7 +29,8 @@ export default async function render(browser, chart, { outPath, css, view, title
 	 * Show the chart
 	 */
 	if (view === true) {
-		notify({ m: 'Launching view...', v: outPath, d: ['magenta', 'bold'] });
-		showChart(root.outerHTML, bounds, css, title);
+		const now = new Date().toLocaleTimeString();
+		notify({ m: `Launching view (${now})...`, v: outPath, d: ['magenta', 'bold'] });
+		showChart(root.outerHTML, now, bounds, css, title);
 	}
 }
