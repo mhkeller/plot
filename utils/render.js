@@ -3,6 +3,9 @@ import notify from 'wsk-notify';
 import withJsdom from './withJsdom.js';
 import screenshotRoot from './screenshotRoot.js';
 import showChart from './showChart.js';
+import sleep from './sleep.js';
+
+let instance = 0;
 
 export default async function render(browser, chart, { outPath, css, view, title }) {
 	/**
@@ -31,6 +34,8 @@ export default async function render(browser, chart, { outPath, css, view, title
 	if (view === true) {
 		const now = new Date().toLocaleTimeString();
 		notify({ m: `Launching view (${now})...`, v: outPath, d: ['magenta', 'bold'] });
-		showChart(root.outerHTML, now, bounds, css, title);
+		await showChart(root.outerHTML, now, bounds, css, title, instance);
+		instance += 1;
 	}
+	await sleep(500);
 }
