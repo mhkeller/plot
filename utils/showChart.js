@@ -15,7 +15,7 @@ const postJs = ``;
 
 export default async function showChart(html, bounds = {}, css = '', title = 'My chart') {
 	// console.log('showing chart', html);
-	await open.openApp(open.apps.firefox, {
+	await open.openApp(open.apps.chrome, {
 		newInstance: true,
 		arguments: [
 			'--incognito',
