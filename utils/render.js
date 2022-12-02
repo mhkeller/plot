@@ -37,5 +37,5 @@ export default async function render(browser, chart, { outPath, css, view, title
 		await showChart(root.outerHTML, now, bounds, css, title, instance);
 		instance += 1;
 	}
-	await sleep(500);
+	// await sleep(250);
 }
