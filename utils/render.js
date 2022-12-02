@@ -10,8 +10,6 @@ export default async function render(browser, chart, { outPath, css, view, title
 	 */
 	const root = await withJsdom(chart)();
 
-	console.log(root.querySelector('body > *').getBoundingClientRect());
-
 	// eslint-disable-next-line no-restricted-syntax
 	for (const svg of root.tagName === 'svg' ? [root] : root.querySelectorAll('svg')) {
 	  svg.setAttributeNS('http://www.w3.org/2000/xmlns/', 'xmlns', 'http://www.w3.org/2000/svg');
@@ -19,18 +17,19 @@ export default async function render(browser, chart, { outPath, css, view, title
 	}
 
 	/**
-	 * `Show the chart
-	 */
-	if (view === true) {
-		showChart(root.outerHTML, title);
-	}
-
-	/**
 	 * Take a screenshot with Playwright
 	 */
-	await screenshotRoot(browser, root, {
+	const bounds = await screenshotRoot(browser, root, {
 		outPath,
 		css
 	});
-	notify({ m: '\tWrote screenshot...', v: outPath, d: ['blue', 'bold'] });
+	notify({ m: '\tWrote screenshot...', v: outPath, d: ['green', 'bold'] });
+
+	/**
+	 * Show the chart
+	 */
+	if (view === true) {
+		notify({ m: 'Launching view...', v: outPath, d: ['magenta', 'bold'] });
+		showChart(root.outerHTML, bounds, css, title);
+	}
 }

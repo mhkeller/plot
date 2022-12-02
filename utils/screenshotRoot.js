@@ -18,5 +18,8 @@ export default async function screenshotRoot(browser, root, { outPath, css }) {
 	if (css) {
 		await page.addStyleTag({ content: css });
 	}
-	await page.locator('body > *').screenshot({ path: outPath });
+	const loc = await page.locator('body > *');
+	await loc.screenshot({ path: outPath });
+
+	return loc.boundingBox();
 }

@@ -32,6 +32,10 @@ export default function withJsdom(run) {
 		global.HTMLCollection = jsdom.window.HTMLCollection;
 		global.fetch = async href => new Response(resolve('./test', href));
 		try {
+			/**
+			 * Add an id so plot.ly can grab onto something
+			 */
+			document.querySelector('body').setAttribute('id', 'body');
 			return await run();
 		} finally {
 			delete global.window;
