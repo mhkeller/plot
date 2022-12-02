@@ -110,7 +110,7 @@ drawHistogram(data, {
   
 ## Examples
 
-See the [examples](./examples/) folder TK.
+See the [test](./test/) folder for now.
 
 ## Known issues
 

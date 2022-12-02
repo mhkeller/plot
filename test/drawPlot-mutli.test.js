@@ -43,3 +43,15 @@ await drawPlot(chart, {
 	view: true,
 	title: 'Line chart'
 });
+
+await drawPlot(chart, {
+	outPath: 'test/tmp/line-plot.png',
+	view: true,
+	title: 'Line chart 2'
+});
+
+await drawPlot(chart, {
+	outPath: 'test/tmp/line-plot.png',
+	view: true,
+	title: 'Line chart3'
+});
