@@ -111,3 +111,7 @@ drawHistogram(data, {
 ## Examples
 
 See the [examples](./examples/) folder TK.
+
+## Known issues
+
+If you go from a double monitor to just your laptop, the `view` option may result in Chrome not responding and it won't display all of your charts. To fix it, put your monitor to sleep and re-open it.
