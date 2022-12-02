@@ -1,7 +1,7 @@
 Plot
 ===
 
-> A small library to render charts in node and save a picture of them as a png
+> A small library to render charts in node and show them in a popup window or save a picture of them as a png.
 
 ## Installing (not yet on npm)
 
@@ -14,7 +14,7 @@ npm install mhkeller/plot
 
 **drawPlot(** `plotFunction: Function, { outPath: String[, css: String] }` **)**
 
-A generic function to render HTML and screenshot it. 
+A generic function to render HTML, view and screenshot it. 
 
 ```js
 import { drawPlot } from '@mhkeller/plot`;
@@ -42,6 +42,7 @@ const chart = async () => Plot.plot({
 
 drawPlot(chart, { 
  outPath: 'chart.png',
+ view: true,
  css: 'svg{overflow:visible;}' 
 });
 ```
@@ -74,6 +75,7 @@ drawHistogram(data, {
  outDir: 'out_images', 
  name: 'my-charts', 
  fill: 'group', 
+ view: true,
  css: 'svg{overflow:visible;}' 
 });
 ```
