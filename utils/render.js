@@ -33,7 +33,7 @@ export default async function render(browser, chart, { outPath, css, view, title
 	 */
 	if (view === true) {
 		const now = new Date().toLocaleTimeString();
-		notify({ m: `Launching view (${now})...`, v: outPath, d: ['magenta', 'bold'] });
+		notify({ m: `Launching view (${now})...`, d: ['magenta', 'bold'] });
 		await showChart(root.outerHTML, now, bounds, css, title, instance);
 		instance += 1;
 	}

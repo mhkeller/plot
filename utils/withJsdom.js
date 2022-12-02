@@ -31,6 +31,8 @@ export default function withJsdom(run) {
 		global.NodeList = jsdom.window.NodeList;
 		global.HTMLCollection = jsdom.window.HTMLCollection;
 		global.fetch = async href => new Response(resolve('./test', href));
+		jsdom.window.HTMLCanvasElement.prototype.getContext = () => null;
+		jsdom.window.URL.createObjectURL = () => null;
 		try {
 			/**
 			 * Add an id so plot.ly can grab onto something

@@ -16,5 +16,6 @@ await drawHistograms(data, {
 	fields,
 	fill: 'minor_group',
 	outDir: 'test/tmp/drawSingleScaleHistogram',
-	breakoutFields: false
+	breakoutFields: false,
+	view: true
 });
