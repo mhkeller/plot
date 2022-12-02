@@ -3,7 +3,7 @@ import notify from 'wsk-notify';
 import withJsdom from './withJsdom.js';
 import screenshotRoot from './screenshotRoot.js';
 import showChart from './showChart.js';
-import sleep from './sleep.js';
+// import sleep from './sleep.js';
 
 let instance = 0;
 
