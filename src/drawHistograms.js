@@ -4,7 +4,7 @@ import * as Plot from '@observablehq/plot';
 import { chromium } from 'playwright';
 import { from } from 'arquero';
 
-import render from '../utils/render.js';
+import render from '../lib/render.js';
 
 /**
  * Draw histograms
@@ -18,18 +18,21 @@ import render from '../utils/render.js';
  * @param {Boolean} [options.view=false] If true, show the chart in a popup window.
  * @param {String} [options.breakoutFields=true] For each field passed into `options.fields` write out a separate PNG. Set this to false to put everything on the same scale.
  * @param {String} [options.columns=true] Draw columns. If `false`, only draw lines.
-*/
-export default async function drawHistograms(data, {
-	name = '',
-	facetBy = [],
-	fields = [],
-	outDir,
-	fill = '#000',
-	css,
-	view = false,
-	breakoutFields = true,
-	columns = true
-}) {
+ */
+export default async function drawHistograms(
+	data,
+	{
+		name = '',
+		facetBy = [],
+		fields = [],
+		outDir,
+		fill = '#000',
+		css,
+		view = false,
+		breakoutFields = true,
+		columns = true
+	}
+) {
 	// const opts = { headless: true };
 	const browser = await chromium.launch();
 	const suffix = columns === false ? '_lines' : '';
@@ -40,7 +43,6 @@ export default async function drawHistograms(data, {
 	 * Facet by our list of facet keys
 	 */
 	for (const fb of facetBy) {
-
 		if (breakoutFields === true) {
 			/**
 			 * And make a chart for each field we want a histogram of
@@ -49,22 +51,23 @@ export default async function drawHistograms(data, {
 				/**
 				 * Define our chart specification
 				 */
-				const chart = async () => Plot.plot({
-					facet: {
-						data,
-						y: fb,
-						marginRight: 50,
-					},
-					fy: {
-						label: ''
-					},
-					marks: [
-						columns === true
-							? Plot.rectY(data, Plot.binX({ y: 'count' }, { x: f, fill }))
-							: Plot.tickX(data, { x: f, ...lineStyle }),
-						columns === true ? Plot.ruleY([0]) : undefined
-					]
-				});
+				const chart = async () =>
+					Plot.plot({
+						facet: {
+							data,
+							y: fb,
+							marginRight: 50
+						},
+						fy: {
+							label: ''
+						},
+						marks: [
+							columns === true
+								? Plot.rectY(data, Plot.binX({ y: 'count' }, { x: f, fill }))
+								: Plot.tickX(data, { x: f, ...lineStyle }),
+							columns === true ? Plot.ruleY([0]) : undefined
+						]
+					});
 
 				/**
 				 * Determine out filename
@@ -76,30 +79,29 @@ export default async function drawHistograms(data, {
 				/**
 				 * Render the chart
 				 */
-				await render(browser, chart, { outPath, css, view, title});
+				await render(browser, chart, { outPath, css, view, title });
 			}
 		} else {
-			const long = from(data)
-				.fold(fields)
-				.objects();
+			const long = from(data).fold(fields).objects();
 
-			const chart = async () => Plot.plot({
-				facet: {
-					data: long,
-					x: 'key',
-					y: fb,
-					marginRight: 50,
-				},
-				fy: {
-					// label: ''
-				},
-				marks: [
-					columns === true
-						? Plot.rectY(long, Plot.binX({ y: 'count' }, { x: 'value', fill }))
-						: Plot.tickX(long, { x: 'value', ...lineStyle }),
-					columns === true ? Plot.ruleY([0]) : undefined
-				]
-			});
+			const chart = async () =>
+				Plot.plot({
+					facet: {
+						data: long,
+						x: 'key',
+						y: fb,
+						marginRight: 50
+					},
+					fy: {
+						// label: ''
+					},
+					marks: [
+						columns === true
+							? Plot.rectY(long, Plot.binX({ y: 'count' }, { x: 'value', fill }))
+							: Plot.tickX(long, { x: 'value', ...lineStyle }),
+						columns === true ? Plot.ruleY([0]) : undefined
+					]
+				});
 			const n = name ? `${name}_` : '';
 			const title = `${n}by__${fb}_${fields.join('|')}${suffix}`;
 			const outPath = join(outDir, `${title}.png`);
@@ -109,7 +111,6 @@ export default async function drawHistograms(data, {
 			 */
 			await render(browser, chart, { outPath, css, view, title });
 		}
-
 	}
 
 	await browser.close();
