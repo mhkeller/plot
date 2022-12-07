@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-syntax */
-import notify from 'wsk-notify';
 import { chromium } from 'playwright';
+import notify from 'wsk-notify';
 
 import render from '../lib/render.js';
 import getLibraryUrls from '../utils/getLibraryUrls.js';
@@ -20,15 +20,16 @@ export default async function plot(
 	{ library = 'observablehq/plot', outPath = 'chart.png', view = false, css, title } = {}
 ) {
 	notify({ m: 'Generating plot...', v: outPath, d: ['magenta', 'bold'] });
-	const testingOpts = { headless: false };
-	const browser = await chromium.launch(testingOpts);
+
+	const browser = await chromium.launch({ headless: true });
+	const page = await browser.newPage();
 
 	const libraryUrls = getLibraryUrls(library);
 
 	/**
 	 * Render the chart
 	 */
-	await render(browser, chart, { args, libraryUrls, outPath, css, view, title });
+	await render(page, chart, { args, libraryUrls, outPath, css, view, title });
 
-	// await browser.close();
+	await browser.close();
 }
