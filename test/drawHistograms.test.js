@@ -1,5 +1,5 @@
 import { readDataSync } from 'indian-ocean';
-import drawHistograms from '../lib/drawHistograms.js';
+import drawHistograms from '../src/drawHistograms.js';
 
 const data = readDataSync('./test/data/groups.tsv');
 

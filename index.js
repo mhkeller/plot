@@ -1,2 +1,2 @@
-export { default as drawPlot } from './src/drawPlot.js';
-export { default as drawHistograms } from './src/drawHistograms.js';
+export { default as plot } from './src/plot.js';
+export { default as plotHistograms } from './src/plotHistograms.js';

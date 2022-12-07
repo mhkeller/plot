@@ -4,6 +4,8 @@ import { promises } from 'fs';
 import { JSDOM } from 'jsdom';
 import { resolve } from 'path';
 
+import libraries from './libraries';
+
 class Response {
 	constructor(href) {
 		this._href = href;
@@ -12,7 +14,7 @@ class Response {
 	}
 
 	async text() {
-		return promises.readFile(this._href, {encoding: 'utf-8'});
+		return promises.readFile(this._href, { encoding: 'utf-8' });
 	}
 
 	async json() {
@@ -20,7 +22,8 @@ class Response {
 	}
 }
 
-export default function withJsdom(run) {
+export default function withJsdom(run, libraryPath) {
+	libraryPath = libraries[libraryPath] || libraryPath;
 	return async () => {
 		const jsdom = new JSDOM('');
 		global.window = jsdom.window;
@@ -30,10 +33,13 @@ export default function withJsdom(run) {
 		global.Node = jsdom.window.Node;
 		global.NodeList = jsdom.window.NodeList;
 		global.HTMLCollection = jsdom.window.HTMLCollection;
-		global.fetch = async href => new Response(resolve('./test', href));
+		global.fetch = async (href) => new Response(resolve('./test', href));
 		jsdom.window.HTMLCanvasElement.prototype.getContext = () => null;
 		jsdom.window.URL.createObjectURL = () => null;
 		try {
+			if (libraryPath) {
+				// Load library
+			}
 			/**
 			 * Add an id so plot.ly can grab onto something
 			 */

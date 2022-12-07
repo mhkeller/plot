@@ -17,9 +17,12 @@
   },
   "homepage": "https://github.com/mhkeller/plot#readme",
   "dependencies": {
+    "compression": "^1.7.4",
     "jsdom": "^20.0.0",
     "open": "^8.4.0",
     "playwright": "^1.24.2",
+    "polka": "^0.5.2",
+    "sirv": "^2.0.2",
     "wsk-notify": "^1.0.0"
   },
   "devDependencies": {
