@@ -2,7 +2,7 @@ import { readDataSync } from 'indian-ocean';
 import * as Plot from '@observablehq/plot';
 import * as aq from 'arquero';
 
-import drawPlot from '../src/drawPlot.js';
+import plot from '../src/plot.js';
 
 const events = readDataSync('./test/data/purchase_data.csv');
 
@@ -18,10 +18,10 @@ const data = aq
 // 	d.date = utcFormat('%a')(d.date);
 // })
 
-const chart = async () =>
-	Plot.plot({
+const chart = ds =>{
+	return Plot.plot({
 		marks: [
-			Plot.line(data, {
+			Plot.line(ds, {
 				x: 'date',
 				y: 'value',
 				stroke: 'brand',
@@ -39,20 +39,20 @@ const chart = async () =>
 			columns: '120px'
 		}
 	});
-
-await drawPlot(chart, {
+}
+await plot(chart, [data], {
 	outPath: 'test/tmp/line-plot.png',
 	view: true,
 	title: 'Line chart'
 });
 
-await drawPlot(chart, {
+await plot(chart, [data], {
 	outPath: 'test/tmp/line-plot.png',
 	view: true,
 	title: 'Line chart 2'
 });
 
-await drawPlot(chart, {
+await plot(chart, [data], {
 	outPath: 'test/tmp/line-plot.png',
 	view: true,
 	title: 'Line chart3'

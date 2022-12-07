@@ -6,7 +6,9 @@ import { contextPath, getContextOpts } from '../settings/index.js'
 export default async function launchContextPage(bounds, instanceNumber, { title } = {}) {
 	const contextOpts = getContextOpts(bounds, instanceNumber, title);
 
-	const context = await chromium.launchPersistentContext(contextPath, contextOpts);
+	const instancePath = `${contextPath}-${instanceNumber}`;
+
+	const context = await chromium.launchPersistentContext(instancePath, contextOpts);
 	const contextPages = await context.pages();
 	// console.log(contextPages);
 	const contextPage = contextPages[0];
@@ -23,7 +25,7 @@ export default async function launchContextPage(bounds, instanceNumber, { title 
 	 * Clean up tmp directory
 	 */
 	context.on('close', () => {
-		rmSync(contextPath, {
+		rmSync(instancePath, {
 			recursive: true
 		});
 	})
