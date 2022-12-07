@@ -3,8 +3,6 @@ Plot
 
 > A small library to render charts in node and show them in a popup window or save a picture of them as a png. 
 
-WORK IN PROGRESS, DOCUMENTATION NEEDS UPDATING
-
 ## Installing (not yet on npm)
 
 ```
@@ -19,13 +17,13 @@ npm install mhkeller/plot
 A generic function to render HTML, view and screenshot it. 
 
 ```js
-import { drawPlot } from '@mhkeller/plot`;
+import { plot } from '@mhkeller/plot`;
 
 // Create an async function that returns html
-const chart = async () => Plot.plot({
+const chart = ds => Plot.plot({
   marks: [
     Plot.rectY(
-      data, 
+      ds, 
       Plot.binX(
         { y: 'count' }, 
         {
@@ -42,7 +40,7 @@ const chart = async () => Plot.plot({
   width: 554
 });
 
-drawPlot(chart, { 
+await plot(chart, [data], { 
  outPath: 'chart.png',
  view: true,
  css: 'svg{overflow:visible;}' 
@@ -52,9 +50,13 @@ drawPlot(chart, {
 *Arguments*
 
 * **chart** `{Function}`
-  * An async function that returns a function that returns HTML. **(required)**
+  * A function that accepts a dataset and returns a function that renders a chart. **(required)**
+* **arguments** `{Function}`
+  * An array of arguments that go into your chart function. This will be the data plus any others you may need. **(required)**
 * **options** `{Object}`
   * An options object.
+* **options.library** `{String|String[]='observablehq/plot'}`
+  * Specify what library to load to render the plot. Built-in options are `'observablehq/plot'`, `'tfjs'` and `'plotly'`. To use your own, add in the URL of the script to load in the browser and it will be injected as the `src` of a `<script>` tag. This field can also be an array of URLs if you need to add multiple scripts.
 * **options.outPath** `{String='chart.png'}`
   * A filepath to write the image.
 * **options.view** `{Boolean=false}`
@@ -63,6 +65,8 @@ drawPlot(chart, {
   * If `view` is true, add a title to the window's page.
 * **options.css** `{String}`
   * Any CSS that you want injected into the page to tweak styles.
+* **options.debug** `{Boolean = false}`
+  * Whether to run the screenshot browser in headfull mode.
 
 **drawHistogram(** `data: Array, { facetBy: String[], fields: String{}, outDir: String[, name: String, fill: String='#000', css: String, view: false] } }` **)**
 
@@ -111,7 +115,9 @@ drawHistogram(data, {
   * For each field passed into `options.fields` write out a separate PNG. Set this to false to put everything on the same scale.
 * **options.columns** `{Boolean=true}`
   * Draw the histogram as columns, like a regular histogram. If this is `false`, just draw semi-opaque lines, which can be useful for seeing density.
-  
+* **options.debug** `{Boolean = false}`
+  * Whether to run the screenshot browser in headfull mode.
+
 ## Examples
 
 See the [test](./test/) folder for now.

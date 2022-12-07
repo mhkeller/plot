@@ -30,11 +30,11 @@ export default async function drawHistograms(
 		css,
 		view = false,
 		breakoutFields = true,
-		columns = true
+		columns = true,
+		debug = false
 	}
 ) {
-	// const opts = { headless: true };
-	const browser = await chromium.launch();
+	const browser = await chromium.launch({ headless: !debug });
 	const suffix = columns === false ? '_lines' : '';
 
 	const lineStyle = { y: 1, stroke: '#000', strokeWidth: 1, strokeOpacity: 0.25 };
@@ -51,7 +51,7 @@ export default async function drawHistograms(
 				/**
 				 * Define our chart specification
 				 */
-				const chart = async () =>
+				const chart = () =>
 					Plot.plot({
 						facet: {
 							data,
@@ -79,12 +79,12 @@ export default async function drawHistograms(
 				/**
 				 * Render the chart
 				 */
-				await render(browser, chart, { outPath, css, view, title });
+				await render(browser, chart, { args: [data], outPath, css, view, title });
 			}
 		} else {
 			const long = from(data).fold(fields).objects();
 
-			const chart = async () =>
+			const chart = () =>
 				Plot.plot({
 					facet: {
 						data: long,
@@ -109,7 +109,7 @@ export default async function drawHistograms(
 			/**
 			 * Render the chart
 			 */
-			await render(browser, chart, { outPath, css, view, title });
+			await render(browser, chart, { args: [data], outPath, css, view, title });
 		}
 	}
 

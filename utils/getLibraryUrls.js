@@ -13,5 +13,5 @@ export default function getLibraryUrls(code) {
 	if (Array.isArray(code)) {
 		return code;
 	}
-	return libs[code] || code;
+	return libs[code] || [code];
 }
