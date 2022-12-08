@@ -4,7 +4,7 @@ import { readFileSync } from 'fs';
 console.log(resolve('./'));
 const libs = {
 	'observablehq/plot': () => [
-		//
+		// https://github.com/observablehq/plot#installing
 		readFileSync('./third-party/observablehq_plot/d3@7.7.js', 'utf-8'),
 		readFileSync('./third-party/observablehq_plot/plot@0.6.js', 'utf-8')
 	],
