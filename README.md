@@ -1,7 +1,7 @@
 Plot
 ===
 
-> A small library to render charts in node and show them in a popup window or save a picture of them as a png. 
+> A small node library to display charts in popup windows and save them as pngs
 
 ## Installing (not yet on npm)
 
