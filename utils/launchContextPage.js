@@ -28,7 +28,13 @@ export default async function launchContextPage(bounds, instanceNumber, { title 
 		rmSync(instancePath, {
 			recursive: true
 		});
-	})
+	});
+	/**
+	 * Close the context when this window closes
+	 */
+	contextPage.on('close', async () => {
+		await context.close();
+	});
 
 	return contextPage;
 }
