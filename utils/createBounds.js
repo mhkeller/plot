@@ -1,4 +1,4 @@
-import { bodyMargin } from '../settings/index.js'
+import { bodyMargin } from '../settings/settings.js'
 
 export default function createBounds(boundingBox) {
 	return {

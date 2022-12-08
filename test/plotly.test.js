@@ -1,38 +1,48 @@
 import { readDataSync } from 'indian-ocean';
-// import Plotly from 'plotly.js-dist-min';
 import * as aq from 'arquero';
 
-import drawPlot from '../src/drawPlot.js';
+import plot from '../src/plot.js';
 
 const events = readDataSync('./test/data/purchase_data.csv');
 
-const data = aq
-	.from(events)
-	.derive({ date: aq.escape((d) => new Date(d.date.split('T')[0])) })
-	.groupby('date', 'brand')
-	.rollup({ value: (d) => aq.op.sum(d.price_in_usd), count: aq.op.count() })
-	.orderby('date', 'brand')
-	.objects();
-
-const chart = async () => {
-	Plot.plot({
-		marks: [
-			Plot.line(data, {
-				x: 'date',
-				y: 'value',
-				stroke: 'brand',
-				strokeWidth: 2,
-				curve: 'linear'
-			})
-		],
-		width: 554,
-		height: 130,
-		x: { ticks: 3 },
-		marginLeft: 50,
-		color: {
-			legend: true,
-			width: 554,
-			columns: '120px'
-		}
-	});
+const trace1 = {
+	type: 'scatter',
+	x: [1, 2, 3, 4],
+	y: [10, 15, 13, 17],
+	mode: 'lines',
+	name: 'Red',
+	line: {
+		color: 'rgb(219, 64, 82)',
+		width: 3
+	}
 };
+
+const trace2 = {
+	type: 'scatter',
+	x: [1, 2, 3, 4],
+	y: [12, 9, 15, 12],
+	mode: 'lines',
+	name: 'Blue',
+	line: {
+		color: 'rgb(55, 128, 191)',
+		width: 1
+	}
+};
+
+const layout = {
+	width: 500,
+	height: 500
+};
+
+const data = [trace1, trace2];
+
+const chart = (ds, l) => {
+	Plotly.newPlot('body', ds, l);
+};
+
+await plot(chart, [data, layout], {
+	library: 'plotly',
+	outPath: 'test/tmp/plotly_line-plot.png',
+	view: true,
+	title: 'Plotly line chart'
+});

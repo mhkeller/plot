@@ -1,7 +1,7 @@
 import { chromium } from 'playwright';
 import { rmSync } from 'fs'
 
-import { contextPath, getContextOpts } from '../settings/index.js'
+import { contextPath, getContextOpts } from '../settings/settings.js'
 
 export default async function launchContextPage(bounds, instanceNumber, { title } = {}) {
 	const contextOpts = getContextOpts(bounds, instanceNumber, title);

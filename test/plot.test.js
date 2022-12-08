@@ -10,7 +10,7 @@ const data = aq
 	.from(events)
 	.derive({ date: aq.escape(d => new Date(d.date.split('T')[0])) })
 	.groupby('date', 'brand')
-	.rollup({ value: d => aq.op.sum(d.price_in_usd), count: aq.op.count() })
+	.rollup({ value: d => aq.op.sum(d.price_in_usd) })
 	.orderby('date', 'brand')
 	.objects();
 

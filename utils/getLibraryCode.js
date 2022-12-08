@@ -1,7 +1,6 @@
 import {  resolve } from 'path'
 import { readFileSync } from 'fs';
 
-console.log(resolve('./'));
 const libs = {
 	// https://github.com/observablehq/plot#installing
 	'observablehq/plot': () => [
@@ -14,7 +13,7 @@ const libs = {
 		readFileSync('./third-party/tfjs/tfjs-vis.js', 'utf-8')
 	],
 	// https://github.com/plotly/plotly.js#load-via-script-tag
-	plotly: () => [readFileSync('./third-party/tfjs/tfjs-vis.js', 'utf-8')]
+	plotly: () => [readFileSync('./third-party/plotly/plotly-2.16.4.min.js', 'utf-8')]
 };
 
 const cache = {};
