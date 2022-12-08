@@ -19,7 +19,7 @@ import render from '../lib/render.js';
  * @param {String} [options.breakoutFields=true] For each field passed into `options.fields` write out a separate PNG. Set this to false to put everything on the same scale.
  * @param {String} [options.columns=true] Draw columns. If `false`, only draw lines.
  */
-export default async function drawHistograms(
+export default async function plotHistogram(
 	data,
 	{
 		name = '',

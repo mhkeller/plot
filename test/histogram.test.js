@@ -1,5 +1,5 @@
 import { readDataSync } from 'indian-ocean';
-import drawHistograms from '../src/drawHistograms.js';
+import plotHistogram from '../src/plotHistogram.js';
 
 const data = readDataSync('./test/data/groups.tsv');
 
@@ -11,10 +11,10 @@ data.forEach(d => {
 	});
 });
 
-await drawHistograms(data, {
+await plotHistogram(data, {
 	facetBy: ['major_group', 'minor_group'],
 	fields,
 	fill: 'minor_group',
-	outDir: 'test/tmp/drawHistograms',
+	outDir: 'test/tmp/plotHistogram',
 	view: true
 });

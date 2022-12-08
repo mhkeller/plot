@@ -12,7 +12,7 @@ npm install mhkeller/plot
 
 ## Functions
 
-**drawPlot(** `plotFunction: Function, { outPath: String[, css: String] }` **)**
+**plot(** `plotFunction: Function, args: Array, { outPath: String[, css: String] }` **)**
 
 A generic function to render HTML, view and screenshot it. 
 
@@ -68,14 +68,14 @@ await plot(chart, [data], {
 * **options.debug** `{Boolean = false}`
   * Whether to run the screenshot browser in headfull mode.
 
-**drawHistogram(** `data: Array, { facetBy: String[], fields: String{}, outDir: String[, name: String, fill: String='#000', css: String, view: false] } }` **)**
+**plotHistogram(** `data: Array, { facetBy: String[], fields: String{}, outDir: String[, name: String, fill: String='#000', css: String, view: false] } }` **)**
 
 A more specific function that takes data, a list of fields to facet by and a list of fields to compute values for. Writes a screenshot.
 
 ```js
-import { drawHistogram } from '@mhkeller/plot`;
+import { plotHistogram } from '@mhkeller/plot`;
 
-drawHistogram(data, { 
+plotHistogram(data, { 
  facetBy: ['group'], 
  fields: ['value', 'value2'], 
  outDir: 'out_images', 
