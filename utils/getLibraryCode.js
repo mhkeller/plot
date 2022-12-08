@@ -17,7 +17,7 @@ const libs = {
 	plotly: () => [readFileSync('./third-party/tfjs/tfjs-vis.js', 'utf-8')]
 };
 
-const cache = {}
+const cache = {};
 
 export default function getLibraryCode(name) {
 	if (Array.isArray(name)) {
