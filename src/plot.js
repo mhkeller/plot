@@ -3,7 +3,7 @@ import { chromium } from 'playwright';
 import notify from 'wsk-notify';
 
 import render from '../lib/render.js';
-import getLibraryUrls from '../utils/getLibraryUrls.js';
+import getLibraryCode from '../utils/getLibraryCode.js';
 
 /**
  * Plot HTML
@@ -25,12 +25,12 @@ export default async function plot(
 	const browser = await chromium.launch({ headless: !debug });
 	const page = await browser.newPage();
 
-	const libraryUrls = getLibraryUrls(library);
+	const libraryCode = getLibraryCode(library);
 
 	/**
 	 * Render the chart
 	 */
-	await render(page, chart, { args, libraryUrls, outPath, css, view, title });
+	await render(page, chart, { args, libraryCode, outPath, css, view, title });
 
 	await browser.close();
 }
