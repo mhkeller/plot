@@ -17,7 +17,7 @@ import getLibraryCode from '../utils/getLibraryCode.js';
  */
 export default async function plot(
 	chart,
-	args,
+	args = [],
 	{ library = 'observablehq/plot', outPath = '', view = false, css, title, debug = false } = {}
 ) {
 	notify({ m: 'Generating plot...', v: outPath, d: ['magenta', 'bold'] });
