@@ -1,7 +1,6 @@
+/* eslint-disable no-undef */
 import { readDataSync } from 'indian-ocean';
-import * as Plot from '@observablehq/plot';
 import * as aq from 'arquero';
-
 import plot from '../src/plot.js';
 
 const events = readDataSync('./test/data/purchase_data.csv');
