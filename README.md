@@ -3,9 +3,9 @@ Plot
 
 > A small node library to display charts in popup windows and save them as pngs
 
-![](assets/line-demo.png)
-
 ![](assets/hist-demo.png)
+
+![](assets/line-demo.png)
 
 ## Installing (not yet on npm)
 
@@ -16,7 +16,7 @@ npm install mhkeller/plot
 
 ## Functions
 
-**plot(** `plotFunction: Function, args: Array, { outPath: String[, css: String] }` **)**
+**plot(** `plotFunction: Function, args: Array, options: Object` **)**
 
 A generic function to render HTML, view and screenshot it. 
 
