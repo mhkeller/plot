@@ -136,6 +136,6 @@ See the [test](./test/) folder for more.
 
 ## How it works
 
-In short, "plot" takes the code inside of your `chart` function and executes it inside a Chrome window controlled by [playwright](https://github.com/microsoft/playwright/). It's essentially a wrapper around running [`page.evalute`](https://playwright.dev/docs/evaluating) that also injects the required JavaScript libraries needed to render the code. But it's also a bit fancier.
+In short, "plot" takes the code inside of your `chart` function and executes it inside a Chrome window controlled by [playwright](https://github.com/microsoft/playwright/). It's essentially a wrapper around running [`page.evaluate`](https://playwright.dev/docs/evaluating) that also injects the required JavaScript libraries needed to render the code. But it's also a bit fancier.
 
 To have better usability, the library renders your chart twice: Once in a hidden browser window to get the screenshot and a second time in a chromeless window for display. The first render is used to measure the dimensions of the generated chart. Those bounds are then passed to the second render so the display can be sized appropriately. Otherwise, you would see a flicker of resizing. (For some reasons, there still is some resizing that occurs, which is being tracked in [this issue](https://github.com/microsoft/playwright/issues/19342).)
