@@ -31,22 +31,24 @@ A generic function to render HTML, view and screenshot it.
 import { plot } from '@mhkeller/plot`;
 
 // Create a function that returns html
-const chart = ds => Plot.plot({
-  marks: [
-    Plot.rectY(
-      ds, 
-      Plot.binX(
-        { y: 'count' }, 
-        {
-          x: 'date', 
-          y: 'value', 
-          fill: 'blue', 
-          thresholds: 10
-        }
+const chart = ds => {
+  return Plot.plot({
+    marks: [
+      Plot.rectY(
+        ds, 
+        Plot.binX(
+          { y: 'count' }, 
+          {
+            x: 'date', 
+            y: 'value', 
+            fill: 'blue', 
+            thresholds: 10
+          }
+        )
       )
-    )
-  ]
-});
+    ]
+  });
+}
 
 await plot(chart, [data], { 
  outPath: 'chart.png',
