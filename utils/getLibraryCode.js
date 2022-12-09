@@ -17,7 +17,13 @@ const libs = {
 	// 	readFileSync(resolve(__dirname, '../third-party/tfjs/tfjs-vis.js'), 'utf-8')
 	// ],
 	// https://github.com/plotly/plotly.js#load-via-script-tag
-	plotly: () => [readFileSync(resolve(__dirname, '../third-party/plotly/plotly-2.16.4.min.js'), 'utf-8')]
+	plotly: () => [readFileSync(resolve(__dirname, '../third-party/plotly/plotly-2.16.4.min.js'), 'utf-8')],
+	// https://vega.github.io/vega-lite/usage/embed.html
+	'vega-lite': () => [
+		readFileSync(resolve(__dirname, '../third-party/vega-lite/vega@5.22.1.js'), 'utf-8'),
+		readFileSync(resolve(__dirname, '../third-party/vega-lite/vega-lite@5.6.0.js'), 'utf-8'),
+		readFileSync(resolve(__dirname, '../third-party/vega-lite/vega-embed@6.21.0.js'), 'utf-8'),
+	]
 };
 
 const cache = {};

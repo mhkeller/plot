@@ -1,7 +1,7 @@
 Plot
 ===
 
-> A small node library to display charts in popup windows and save them as pngs. Supports [observablehq/plot](https://observablehq.com/@observablehq/plot) and [plotly](https://plotly.com/javascript/) out of the box.
+> A small node library to display charts in popup windows and save them as pngs. Supports [observablehq/plot](https://observablehq.com/@observablehq/plot), [vega-lite](https://vega.github.io/vega-lite/) and [plotly](https://plotly.com/javascript/) out of the box.
 
 - [Motivation](#motivation)
 - [Installing](#installing)
@@ -11,7 +11,7 @@ Plot
 
 ## Motivation
 
-In notebook-based systems or IDEs like RStudio, it's nice to create a quick chart or map from your data. There aren't that many similar solutions for Node.js, however. This library is a small bridge that allows you to take advantage of these or similar charting libraries such as [observablehq/plot](https://observablehq.com/@observablehq/plot), [plotly](https://plotly.com/javascript/) or others to renders charts in a browser environment directly from a Node script, see the results in a minimal popup window and save the image.
+In notebook-based systems or IDEs like RStudio, it's nice to create a quick chart or map from your data. There aren't that many similar solutions for Node.js, however. This library is a small bridge that allows you to take advantage of these or similar charting libraries such as [observablehq/plot](https://observablehq.com/@observablehq/plot), [vega-lite](https://vega.github.io/vega-lite/) and [plotly](https://plotly.com/javascript/) or others to renders charts in a browser environment directly from a Node script, see the results in a minimal popup window and save the image.
 
 ![](_readme-assets/hist-demo.png)
 ![](_readme-assets/line-demo.png)
@@ -69,7 +69,7 @@ await plot(chart, [data], {
 * **options** `{Object}`
   * An options object.
 * **options.library** `{String|String[]='observablehq/plot'}`
-  * Specify what library to load to render the plot. Built-in options are `'observablehq/plot'` and `'plotly'`. Other strings will be interpreted as custom JavaScript to insert. This field can also be an array of strings, if you need to add multiple scripts.
+  * Specify what library to load to render the plot. Built-in options are `'observablehq/plot'`, `'vega-lite'` and `'plotly'`. Other strings will be interpreted as custom JavaScript to insert. This field can also be an array of strings, if you need to add multiple scripts.
 * **options.outPath** `{String='chart.png'}`
   * A filepath to write the image.
 * **options.view** `{Boolean=false}`
