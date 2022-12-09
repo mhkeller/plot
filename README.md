@@ -38,16 +38,12 @@ const chart = ds => Plot.plot({
         }
       )
     )
-  ], 
-  marginLeft: 100, 
-  height: 200,
-  width: 554
+  ]
 });
 
 await plot(chart, [data], { 
  outPath: 'chart.png',
- view: true,
- css: 'svg{overflow:visible;}' 
+ view: true
 });
 ```
 
@@ -85,8 +81,7 @@ plotHistogram(data, {
  outDir: 'out_images', 
  name: 'my-charts', 
  fill: 'group', 
- view: true,
- css: 'svg{overflow:visible;}' 
+ view: true
 });
 ```
 
