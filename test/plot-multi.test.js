@@ -6,7 +6,7 @@ import plot from '../src/plot.js';
 
 const events = readDataSync('./test/data/purchase_data.csv');
 
-const data = aq
+const dataset = aq
 	.from(events)
 	.derive({ date: aq.escape(d => new Date(d.date.split('T')[0])) })
 	.groupby('date', 'brand')
@@ -18,10 +18,10 @@ const data = aq
 // 	d.date = utcFormat('%a')(d.date);
 // })
 
-const chart = ds =>{
+const chart = data =>{
 	return Plot.plot({
 		marks: [
-			Plot.line(ds, {
+			Plot.line(data, {
 				x: 'date',
 				y: 'value',
 				stroke: 'brand',
@@ -40,19 +40,19 @@ const chart = ds =>{
 		}
 	});
 }
-await plot(chart, [data], {
+await plot(chart, [dataset], {
 	outPath: 'test/tmp/line-plot.png',
 	view: true,
 	title: 'Line chart'
 });
 
-await plot(chart, [data], {
+await plot(chart, [dataset], {
 	outPath: 'test/tmp/line-plot.png',
 	view: true,
 	title: 'Line chart 2'
 });
 
-await plot(chart, [data], {
+await plot(chart, [dataset], {
 	outPath: 'test/tmp/line-plot.png',
 	view: true,
 	title: 'Line chart3'

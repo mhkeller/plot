@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import plot from '../src/plot.js';
 
-const data = {
+const dataset = {
 	values: [
 		{a: 'A', b: 28},
 		{a: 'B', b: 55},
@@ -15,11 +15,11 @@ const data = {
 	]
 };
 
-const chart = ds => {
+const chart = data => {
 	const spec = {
 		$schema: 'https://vega.github.io/schema/vega-lite/v5.json',
 		description: 'A simple bar chart with embedded data.',
-		data: ds,
+		data,
 		mark: 'bar',
 		encoding: {
 			x: {field: 'a', type: 'ordinal'},
@@ -29,7 +29,7 @@ const chart = ds => {
 	return vegaEmbed('#body', spec);
 }
 
-await plot(chart, [data], {
+await plot(chart, [dataset], {
 	library: 'vega-lite',
 	outPath: 'test/tmp/vega-lite_line-plot.png',
 	view: true,

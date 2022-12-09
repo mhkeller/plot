@@ -25,18 +25,18 @@ const trace2 = {
 	}
 };
 
-const layout = {
+const chartLayout = {
 	width: 500,
 	height: 500
 };
 
-const data = [trace1, trace2];
+const dataset = [trace1, trace2];
 
-const chart = (ds, l) => {
-	Plotly.newPlot('body', ds, l);
+const chart = (data, layout) => {
+	Plotly.newPlot('body', data, layout);
 };
 
-await plot(chart, [data, layout], {
+await plot(chart, [dataset, chartLayout], {
 	library: 'plotly',
 	outPath: 'test/tmp/plotly_line-plot.png',
 	view: true,

@@ -1,7 +1,7 @@
 Plot
 ===
 
-> A small node library to display charts in popup windows and save them as pngs. Supports [observablehq/plot](https://observablehq.com/@observablehq/plot), [vega-lite](https://vega.github.io/vega-lite/) and [plotly](https://plotly.com/javascript/) out of the box.
+> A small node library to display charts in popup windows and save them as pngs. Supports [Observablehq/plot](https://observablehq.com/@observablehq/plot), [Vega-lite](https://vega.github.io/vega-lite/) and [Plotly](https://plotly.com/javascript/) out of the box.
 
 - [Motivation](#motivation)
 - [Installing](#installing)
@@ -30,15 +30,60 @@ npm install @mhkeller/plot
 
 A generic function to render HTML, view and screenshot it. 
 
+If your plot function requires a DOM element ID to render into (as Vega-lite and Plotly do), a `#body` element is added to the page for you to use.
+
+```javascript
+import { plot } from '@mhkeller/plot';
+
+const dataset = {
+	values: [
+		{a: 'A', b: 28},
+		{a: 'B', b: 55},
+		{a: 'C', b: 43},
+		{a: 'D', b: 91},
+		{a: 'E', b: 81},
+		{a: 'F', b: 53},
+		{a: 'G', b: 19},
+		{a: 'H', b: 87},
+		{a: 'I', b: 52}
+	]
+};
+
+const chart = data => {
+	const spec = {
+		$schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+		description: 'A simple bar chart with embedded data.',
+		data,
+		mark: 'bar',
+		encoding: {
+			x: {field: 'a', type: 'ordinal'},
+			y: {field: 'b', type: 'quantitative'}
+		}
+	};
+	return vegaEmbed('#body', spec);
+}
+
+await plot(chart, [dataset], {
+	library: 'vega-lite',
+	outPath: 'test/tmp/vega-lite_line-plot.png',
+	view: true,
+	title: 'Vega line chart'
+});
+```
+
+If the plot function simply creates HTML, then this function can simply return from that function and the HTML will be appended to the `#body` element automatically such as in this Observablehq/plot example.
+
 ```javascript
 import { plot } from '@mhkeller/plot`;
 
+const dataset = /* read in your dataset ... */
+
 // Create a function that returns html
-const chart = ds => {
+const chart = data => {
   return Plot.plot({
     marks: [
       Plot.rectY(
-        ds, 
+        data, 
         Plot.binX(
           { y: 'count' }, 
           {
