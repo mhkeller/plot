@@ -27,6 +27,7 @@ export const getContextOpts = (bounds, instanceNumber, title) => {
 			`--window-position=${moveTo}`,
 			'--test-type='
 		],
+		viewport: null,
 		ignoreDefaultArgs: ['--enable-automation'],
 		headless: false
 	};
