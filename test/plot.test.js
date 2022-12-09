@@ -22,18 +22,10 @@ const chart = ds => {
 				y: 'value',
 				stroke: 'brand',
 				strokeWidth: 2,
-				curve: 'linear'
 			})
 		],
-		width: 554,
-		height: 130,
 		x: { ticks: 3 },
-		marginLeft: 50,
-		color: {
-			legend: true,
-			width: 554,
-			columns: '120px'
-		}
+		color: { legend: true }
 	});
 };
 
