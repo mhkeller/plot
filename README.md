@@ -20,11 +20,8 @@ In notebook-based systems or IDEs like RStudio, it's nice to create a quick char
 
 ## Installing
 
-It's not yet on npm so install with the below command but import it with `import { plot, plotHistogram } from '@mhkeller/plot'`.
-
 ```
-npm install mhkeller/plot
-# later when it's on npm, you can do npm install @mhkeller/plot
+npm install @mhkeller/plot
 ```
 
 ## Functions
