@@ -1,16 +1,22 @@
 Plot
 ===
 
-> A small node library to display charts in popup windows and save them as pngs
+> A small node library to display charts in popup windows and save them as pngs. Supports [observablehq/plot](https://observablehq.com/@observablehq/plot) and [plotly](https://plotly.com/javascript/) out of the box.
 
+- [Motivation](#motivation)
 - [Installing](#installing)
 - [Functions](#functions)
 - [Examples](#examples)
-- [Troubleshooting](#troubleshooting)
+- [How it works](#how-it-works)
 
+## Motivation
 
-![](assets/hist-demo.png)
-![](assets/line-demo.png)
+In notebook-based systems or IDEs like RStudio, it's nice to create a quick chart or map from your data. There aren't that many similar solutions for Node.js, however. This library is a small bridge that allows you to take advantage of these or similar charting libraries such as [observablehq/plot](https://observablehq.com/@observablehq/plot), [plotly](https://plotly.com/javascript/) or others to renders charts in a browser environment directly from a Node script, see the results in a minimal popup window and save the image.
+
+![](_readme-assets/hist-demo.png)
+![](_readme-assets/line-demo.png)
+![](_readme-assets/map-output.png)
+![](_readme-assets/map-code.png)
 
 ## Installing
 
@@ -52,7 +58,8 @@ const chart = ds => {
 
 await plot(chart, [data], { 
  outPath: 'chart.png',
- view: true
+ view: true,
+ library: 'observablehq/plot' // default
 });
 ```
 
@@ -65,7 +72,7 @@ await plot(chart, [data], {
 * **options** `{Object}`
   * An options object.
 * **options.library** `{String|String[]='observablehq/plot'}`
-  * Specify what library to load to render the plot. Built-in options are `'observablehq/plot'`, `'tfjs'` and `'plotly'`. To use your own, add in the URL of the script to load in the browser and it will be injected as the `src` of a `<script>` tag. This field can also be an array of URLs if you need to add multiple scripts.
+  * Specify what library to load to render the plot. Built-in options are `'observablehq/plot'` and `'plotly'`. Other strings will be interpreted as custom JavaScript to insert. This field can also be an array of strings, if you need to add multiple scripts.
 * **options.outPath** `{String='chart.png'}`
   * A filepath to write the image.
 * **options.view** `{Boolean=false}`
@@ -130,6 +137,8 @@ plotHistogram(data, {
 
 See the [test](./test/) folder for more.
 
-## Troubleshooting
+## How it works
 
-If you go from a double monitor to just your laptop, the `view` option may result in Chrome not responding and it won't display all of your charts. To fix it, put your monitor to sleep and re-open it.
+In short, "plot" takes the code inside of your `chart` function and executes it inside a Chrome window controlled by [playwright](https://github.com/microsoft/playwright/). It's essentially a wrapper around running [`page.evalute`](https://playwright.dev/docs/evaluating) that also injects the required JavaScript libraries needed to render the code. But it's also a bit fancier.
+
+To have better usability, the library renders your chart twice: Once in a hidden browser window to get the screenshot and a second time in a chromeless window for display. The first render is used to measure the dimensions of the generated chart. Those bounds are then passed to the second render so the display can be sized appropriately. Otherwise, you would see a flicker of resizing. (For some reasons, there still is some resizing that occurs, which is being tracked in [this issue](https://github.com/microsoft/playwright/issues/19342).)

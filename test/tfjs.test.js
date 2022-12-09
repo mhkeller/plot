@@ -16,7 +16,7 @@ const surface = { name: 'Scatterplot', tab: 'Charts' };
 
 const chart = (s, ds) => {
 	// eslint-disable-next-line no-undef
-	tfvis.render.scatterplot(s, ds);
+	tfvis.render.scatterplot(document.body, ds);
 }
 
 await plot(chart, [surface, data], {

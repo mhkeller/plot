@@ -76,7 +76,7 @@ export default async function plotHistogram(
 				 */
 				const n = name ? `${name}_` : '';
 				const title = `${n}by__${fb}_${f}${suffix}`;
-				const outPath = join(outDir, `${title}.png`);
+				const outPath = outDir ? join(outDir, `${title}.png`) : null;
 
 				/**
 				 * Render the chart
@@ -109,7 +109,7 @@ export default async function plotHistogram(
 			}
 			const n = name ? `${name}_` : '';
 			const title = `${n}by__${fb}_${fields.join('|')}${suffix}`;
-			const outPath = join(outDir, `${title}.png`);
+			const outPath = outDir ? join(outDir, `${title}.png`) : null;
 
 			/**
 			 * Render the chart

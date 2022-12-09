@@ -12,10 +12,10 @@ const libs = {
 		readFileSync(resolve(__dirname, '../third-party/observablehq_plot/plot@0.6.js'), 'utf-8')
 	],
 	// https://github.com/tensorflow/tfjs/tree/master/tfjs-vis#installation
-	tfjs: () => [
-		readFileSync(resolve(__dirname, '../third-party/tfjs/tfjs.js'), 'utf-8'),
-		readFileSync(resolve(__dirname, '../third-party/tfjs/tfjs-vis.js'), 'utf-8')
-	],
+	// tfjs: () => [
+	// 	readFileSync(resolve(__dirname, '../third-party/tfjs/tfjs.js'), 'utf-8'),
+	// 	readFileSync(resolve(__dirname, '../third-party/tfjs/tfjs-vis.js'), 'utf-8')
+	// ],
 	// https://github.com/plotly/plotly.js#load-via-script-tag
 	plotly: () => [readFileSync(resolve(__dirname, '../third-party/plotly/plotly-2.16.4.min.js'), 'utf-8')]
 };
