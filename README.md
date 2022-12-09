@@ -27,7 +27,7 @@ npm install mhkeller/plot
 
 A generic function to render HTML, view and screenshot it. 
 
-```js
+```javascript
 import { plot } from '@mhkeller/plot`;
 
 // Create a function that returns html
@@ -79,7 +79,7 @@ await plot(chart, [data], {
 
 A more specific function that takes data, a list of fields to facet by and a list of fields to compute values for. Writes a screenshot.
 
-```js
+```javascript
 import { plotHistogram } from '@mhkeller/plot`;
 
 plotHistogram(data, { 
