@@ -5,6 +5,7 @@ import { chromium } from 'playwright';
 import { from } from 'arquero';
 
 import render from '../lib/render.js';
+import getLibraryCode from '../utils/getLibraryCode.js';
 
 /**
  * Draw histograms
@@ -35,9 +36,8 @@ export default async function plotHistogram(
 	}
 ) {
 	const browser = await chromium.launch({ headless: !debug });
+	const libraryCode = getLibraryCode('observablehq/plot');
 	const suffix = columns === false ? '_lines' : '';
-
-	const lineStyle = { y: 1, stroke: '#000', strokeWidth: 1, strokeOpacity: 0.25 };
 
 	/**
 	 * Facet by our list of facet keys
@@ -48,27 +48,29 @@ export default async function plotHistogram(
 			 * And make a chart for each field we want a histogram of
 			 */
 			for (const f of fields) {
+				const page = await browser.newPage();
 				/**
 				 * Define our chart specification
 				 */
-				const chart = () =>
-					Plot.plot({
+				const chart = (ds, x, y, fll, cols) => {
+					const lineStyle = { y: 1, stroke: '#000', strokeWidth: 1, strokeOpacity: 0.25 };
+					return Plot.plot({
 						facet: {
-							data,
-							y: fb,
+							data: ds,
+							y,
 							marginRight: 50
 						},
 						fy: {
 							label: ''
 						},
 						marks: [
-							columns === true
-								? Plot.rectY(data, Plot.binX({ y: 'count' }, { x: f, fill }))
-								: Plot.tickX(data, { x: f, ...lineStyle }),
-							columns === true ? Plot.ruleY([0]) : undefined
+							cols === true
+								? Plot.rectY(ds, Plot.binX({ y: 'count' }, { x, fill: fll }))
+								: Plot.tickX(ds, { x, ...lineStyle }),
+							cols === true ? Plot.ruleY([0]) : undefined
 						]
 					});
-
+				}
 				/**
 				 * Determine out filename
 				 */
@@ -79,29 +81,32 @@ export default async function plotHistogram(
 				/**
 				 * Render the chart
 				 */
-				await render(browser, chart, { args: [data], outPath, css, view, title });
+				await render(page, chart, { args: [data, f, fb, fill, columns], libraryCode, outPath, css, view, title });
 			}
 		} else {
+			const page = await browser.newPage();
 			const long = from(data).fold(fields).objects();
 
-			const chart = () =>
-				Plot.plot({
+			const chart = (ds, y, fll, cols) => {
+				const lineStyle = { y: 1, stroke: '#000', strokeWidth: 1, strokeOpacity: 0.25 };
+				return Plot.plot({
 					facet: {
-						data: long,
+						data: ds,
 						x: 'key',
-						y: fb,
+						y,
 						marginRight: 50
 					},
 					fy: {
 						// label: ''
 					},
 					marks: [
-						columns === true
-							? Plot.rectY(long, Plot.binX({ y: 'count' }, { x: 'value', fill }))
-							: Plot.tickX(long, { x: 'value', ...lineStyle }),
-						columns === true ? Plot.ruleY([0]) : undefined
+						cols === true
+							? Plot.rectY(ds, Plot.binX({ y: 'count' }, { x: 'value', fill: fll }))
+							: Plot.tickX(ds, { x: 'value', ...lineStyle }),
+						cols === true ? Plot.ruleY([0]) : undefined
 					]
 				});
+			}
 			const n = name ? `${name}_` : '';
 			const title = `${n}by__${fb}_${fields.join('|')}${suffix}`;
 			const outPath = join(outDir, `${title}.png`);
@@ -109,7 +114,7 @@ export default async function plotHistogram(
 			/**
 			 * Render the chart
 			 */
-			await render(browser, chart, { args: [data], outPath, css, view, title });
+			await render(page, chart, { args: [long, fb, fill, columns], libraryCode, outPath, css, view, title });
 		}
 	}
 

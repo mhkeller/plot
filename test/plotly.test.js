@@ -1,9 +1,5 @@
-import { readDataSync } from 'indian-ocean';
-import * as aq from 'arquero';
-
+/* eslint-disable no-undef */
 import plot from '../src/plot.js';
-
-const events = readDataSync('./test/data/purchase_data.csv');
 
 const trace1 = {
 	type: 'scatter',
