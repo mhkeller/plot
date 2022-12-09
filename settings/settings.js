@@ -1,3 +1,9 @@
+import { dirname, resolve } from 'path';
+import { fileURLToPath } from 'url';
+
+// eslint-disable-next-line no-underscore-dangle
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 const defaultXY = [0, 25];
 const offset = 25;
 
@@ -19,12 +25,11 @@ export const getContextOpts = (bounds, instanceNumber, title) => {
 			`--app=data:text/html,<html><title>${title}</title><head></head><body></body></html>`,
 			`--window-size=${bounds.width},${bounds.height}`,
 			`--window-position=${moveTo}`,
-			'--test-type=',
+			'--test-type='
 		],
 		ignoreDefaultArgs: ['--enable-automation'],
-		headless: false,
-	}
-}
+		headless: false
+	};
+};
 
-// TODO make this better
-export const contextPath = './tmp';
+export const contextPath = resolve(__dirname, '../temp-instances');

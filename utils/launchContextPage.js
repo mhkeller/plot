@@ -1,12 +1,22 @@
 import { chromium } from 'playwright';
-import { rmSync } from 'fs'
+import { rmSync, existsSync } from 'fs'
+import { join } from 'path';
 
-import { contextPath, getContextOpts } from '../settings/settings.js'
+import { contextPath, getContextOpts } from '../settings/settings.js';
+
+function trashContexts() {
+	if (existsSync(contextPath)) {
+		rmSync(contextPath, {
+			recursive: true
+		});
+	}
+}
 
 export default async function launchContextPage(bounds, instanceNumber, { title } = {}) {
+	trashContexts();
 	const contextOpts = getContextOpts(bounds, instanceNumber, title);
 
-	const instancePath = `${contextPath}-${instanceNumber}`;
+	const instancePath = join(contextPath, `instance-${instanceNumber}`);
 
 	const context = await chromium.launchPersistentContext(instancePath, contextOpts);
 	const contextPages = await context.pages();
@@ -25,14 +35,13 @@ export default async function launchContextPage(bounds, instanceNumber, { title 
 	 * Clean up tmp directory
 	 */
 	context.on('close', () => {
-		rmSync(instancePath, {
-			recursive: true
-		});
+		trashContexts();
 	});
 	/**
 	 * Close the context when this window closes
 	 */
 	contextPage.on('close', async () => {
+		trashContexts();
 		await context.close();
 	});
 
