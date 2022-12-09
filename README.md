@@ -3,6 +3,8 @@ Plot
 
 > A small node library to display charts in popup windows and save them as pngs
 
+![](assets/demo.png)
+
 ## Installing (not yet on npm)
 
 ```
@@ -19,7 +21,7 @@ A generic function to render HTML, view and screenshot it.
 ```js
 import { plot } from '@mhkeller/plot`;
 
-// Create an async function that returns html
+// Create a function that returns html
 const chart = ds => Plot.plot({
   marks: [
     Plot.rectY(
@@ -120,8 +122,8 @@ plotHistogram(data, {
 
 ## Examples
 
-See the [test](./test/) folder for now.
+See the [test](./test/) folder for more.
 
-## Known issues
+## Troubleshooting
 
 If you go from a double monitor to just your laptop, the `view` option may result in Chrome not responding and it won't display all of your charts. To fix it, put your monitor to sleep and re-open it.
