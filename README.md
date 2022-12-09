@@ -3,8 +3,9 @@ Plot
 
 > A small node library to display charts in popup windows and save them as pngs
 
-![](assets/demo-5.png)
-![](assets/demo-6.png)
+![](assets/line-demo.png)
+
+![](assets/hist-demo.png)
 
 ## Installing (not yet on npm)
 
