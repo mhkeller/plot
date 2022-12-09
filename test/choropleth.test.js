@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { readDataSync } from 'indian-ocean';
 import plot from '../src/plot.js';
 
@@ -27,6 +26,7 @@ const chart = (rows, title) => {
 			lataxis: {}
 		}
 	};
+	// eslint-disable-next-line no-undef
 	Plotly.newPlot('body', data, layout, { showLink: false });
 }
 const title = '2014 US Population by State';
@@ -37,6 +37,7 @@ await plot(chart, [statesData, title], {
 	view: true,
 	title
 });
+
 
 
 
