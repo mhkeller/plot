@@ -3,10 +3,18 @@ Plot
 
 > A small node library to display charts in popup windows and save them as pngs
 
+- [Installing](#installing)
+- [Functions](#functions)
+- [Examples](#examples)
+- [Troubleshooting](#troubleshooting)
+
+
 ![](assets/hist-demo.png)
 ![](assets/line-demo.png)
 
-## Installing (not yet on npm)
+## Installing
+
+It's not yet on npm so install with the below command but import it with `import { plot, plotHistogram } from '@mhkeller/plot'`.
 
 ```
 npm install mhkeller/plot
