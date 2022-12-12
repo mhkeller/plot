@@ -118,5 +118,7 @@ export default async function plotHistogram(
 		}
 	}
 
-	await browser.close();
+	if (debug === false) {
+		await browser.close();
+	}
 }
