@@ -17,19 +17,14 @@
 	},
 	"homepage": "https://github.com/mhkeller/plot#readme",
 	"dependencies": {
-		"compression": "^1.7.4",
-		"jsdom": "^20.0.0",
-		"open": "^8.4.0",
 		"playwright": "^1.24.2",
-		"polka": "^0.5.2",
-		"rimraf": "^3.0.2",
-		"sirv": "^2.0.2",
 		"wsk-notify": "^1.0.0"
 	},
 	"devDependencies": {
+		"arquero": "^5.1.0",
 		"@babel/core": "^7.17.5",
 		"@babel/eslint-parser": "^7.17.0",
-		"@observablehq/plot": "^0.5.2",
+		"@observablehq/plot": "^0.6.1",
 		"arquero": "^5.1.0",
 		"eslint": "^8.21.0",
 		"eslint-config-airbnb": "^19.0.4",
@@ -37,7 +32,6 @@
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-import": "^2.26.0",
 		"indian-ocean": "^4.0.3",
-		"plotly.js-dist-min": "^2.16.3",
 		"prettier": "^2.5.1"
 	}
 }

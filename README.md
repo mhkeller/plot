@@ -4,6 +4,7 @@ Plot
 > A small node library to display charts in popup windows and save them as pngs. Supports [Observablehq/plot](https://observablehq.com/@observablehq/plot), [Vega-lite](https://vega.github.io/vega-lite/) and [Plotly](https://plotly.com/javascript/) out of the box.
 
 - [Motivation](#motivation)
+- [A note on undefined variables](#a-note-on-undefined-variables)
 - [Installing](#installing)
 - [Functions](#functions)
 - [Examples](#examples)
@@ -17,6 +18,10 @@ In notebook-based systems or IDEs like RStudio, it's nice to create a quick char
 ![](_readme-assets/line-demo.png)
 ![](_readme-assets/map-output.png)
 ![](_readme-assets/map-code.png)
+
+## A note on undefined variables
+
+Because the chart plotting function only gets executed in the browser context, it will reference global variables that don't exist in your node context. In the examples above, your linter may flag `Plotly` and `Plot` (from @observablehq/plot) as missing. But don't worry, those variables will exist at runtime and you can ignore these warnings.
 
 ## Installing
 
