@@ -68,8 +68,21 @@ const chart = data => {
   };
 }
 
+// Or if using vega-lite-api
+
+const chart = data => {
+	return vl.markBar()
+		.description('A simple bar chart with embedded data.')
+		.data(data)
+		.encode(
+			vl.x().fieldO('a'),
+			vl.y().fieldQ('b')
+		)
+}
+
 await plot(chart, [dataset], {
   library: 'vega-lite',
+  // library: 'vega-lite-api',
   view: true,
   title: 'Vega line chart'
   outPath: 'test/tmp/vega-lite_line-plot.png',
