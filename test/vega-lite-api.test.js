@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+import * as vl from 'vega-lite-api';
 import plot from '../src/plot.js';
 
 const dataset = {
@@ -16,21 +17,18 @@ const dataset = {
 };
 
 const chart = data => {
-	return {
-		$schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-		description: 'A simple bar chart with embedded data.',
-		data,
-		mark: 'bar',
-		encoding: {
-			x: {field: 'a', type: 'ordinal'},
-			y: {field: 'b', type: 'quantitative'}
-		}
-	};
+	return vl.markBar()
+		.description('A simple bar chart with embedded data.')
+		.data(data)
+		.encode(
+			vl.x().fieldO('a'),
+			vl.y().fieldQ('b')
+		)
 }
 
 await plot(chart, [dataset], {
-	library: 'vega-lite',
-	outPath: 'test/tmp/vega-lite_line-plot.png',
+	library: 'vega-lite-api',
+	outPath: 'test/tmp/vega-lite-api_line-plot.png',
 	view: true,
-	title: 'Vega line chart'
+	title: 'Vega-lite-api line chart'
 });

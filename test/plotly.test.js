@@ -33,7 +33,8 @@ const chartLayout = {
 const dataset = [trace1, trace2];
 
 const chart = (data, layout) => {
-	Plotly.newPlot('body', data, layout);
+	return layout;
+	// Plotly.newPlot('body', data, layout);
 };
 
 await plot(chart, [dataset, chartLayout], {

@@ -23,6 +23,13 @@ const libs = {
 		readFileSync(resolve(__dirname, '../third-party/vega-lite/vega@5.22.1.js'), 'utf-8'),
 		readFileSync(resolve(__dirname, '../third-party/vega-lite/vega-lite@5.6.0.js'), 'utf-8'),
 		readFileSync(resolve(__dirname, '../third-party/vega-lite/vega-embed@6.21.0.js'), 'utf-8'),
+	],
+	'vega-lite-api': () => [
+		readFileSync(resolve(__dirname, '../third-party/vega-lite/vega@5.22.1.js'), 'utf-8'),
+		readFileSync(resolve(__dirname, '../third-party/vega-lite/vega-lite@5.6.0.js'), 'utf-8'),
+		readFileSync(resolve(__dirname, '../third-party/vega-lite/vega-embed@6.21.0.js'), 'utf-8'),
+		readFileSync(resolve(__dirname, '../third-party/vega-lite-api/vega-lite-api@5.6.0.js'), 'utf-8'),
+		readFileSync(resolve(__dirname, '../third-party/vega-lite-api/vega-tooltip@0.31.0.js'), 'utf-8'),
 	]
 };
 

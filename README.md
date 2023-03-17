@@ -12,7 +12,7 @@ Plot
 
 ## Motivation
 
-In notebook-based systems or IDEs like RStudio, it's nice to create a quick chart or map from your data. There aren't that many similar solutions for Node.js, however. This library is a small bridge that allows you to take advantage of these or similar charting libraries such as [observablehq/plot](https://observablehq.com/@observablehq/plot), [vega-lite](https://vega.github.io/vega-lite/) and [plotly](https://plotly.com/javascript/) or others to renders charts in a browser environment directly from a Node script, see the results in a minimal popup window and save the image.
+In notebook-based systems or IDEs like RStudio, it's nice to create a quick chart or map from your data. There aren't that many similar solutions for Node.js, however. This library is a small bridge that allows you to take advantage of these or similar charting libraries such as [observablehq/plot](https://observablehq.com/@observablehq/plot), [vega-lite](https://vega.github.io/vega-lite/), [vega-lite-api](https://vega.github.io/vega-lite-api/) and [plotly](https://plotly.com/javascript/) or others to renders charts in a browser environment directly from a Node script, see the results in a minimal popup window and save the image.
 
 ![](_readme-assets/hist-demo.png)
 ![](_readme-assets/line-demo.png)
@@ -35,27 +35,28 @@ npm install @mhkeller/plot
 
 A generic function to render HTML, view and screenshot it. 
 
-If your plot function requires a DOM element ID to render into (as Vega-lite and Plotly do), a `#body` element is added to the page for you to use.
+If your plot function requires a DOM element ID to render into (as Plotly does), a `#body` element is added to the page for you to use.
+
+The `plotFunction` can return data specific to the chart library you're using:
+
+* Vega-Lite: Return the JSON spec, it will be passed to `vegaEmbed`.
+* Vega-Lite-API: Return the chart object. It will be called with `toSpec()` and then passed to `vegaEmbed`.
+* ObservableHq/Plot: Return the chart object. It will be called and the HTML will be appended to the 
 
 ```javascript
 import { plot } from '@mhkeller/plot';
 
 const dataset = {
   values: [
-    {a: 'A', b: 28},
-    {a: 'B', b: 55},
-    {a: 'C', b: 43},
-    {a: 'D', b: 91},
-    {a: 'E', b: 81},
-    {a: 'F', b: 53},
-    {a: 'G', b: 19},
-    {a: 'H', b: 87},
-    {a: 'I', b: 52}
+    { a: 'A', b: 28 },
+    { a: 'B', b: 55 },
+    { a: 'C', b: 43 },
+    { a: 'D', b: 91 },
   ]
 };
 
 const chart = data => {
-  const spec = {
+  return {
     $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
     description: 'A simple bar chart with embedded data.',
     data,
@@ -65,14 +66,13 @@ const chart = data => {
       y: {field: 'b', type: 'quantitative'}
     }
   };
-  return vegaEmbed('#body', spec);
 }
 
 await plot(chart, [dataset], {
   library: 'vega-lite',
-  outPath: 'test/tmp/vega-lite_line-plot.png',
   view: true,
   title: 'Vega line chart'
+  outPath: 'test/tmp/vega-lite_line-plot.png',
 });
 ```
 
@@ -109,6 +109,8 @@ await plot(chart, [data], {
  library: 'observablehq/plot' // default
 });
 ```
+
+*Note: If your plot function requires a DOM element ID to render into, a `#body` element is added to the page for you to use.*
 
 *Arguments*
 
@@ -186,6 +188,6 @@ See the [test](./test/) folder for more.
 
 ## How it works
 
-In short, "plot" takes the code inside of your `chart` function and executes it inside a Chrome window controlled by [playwright](https://github.com/microsoft/playwright/). It's essentially a wrapper around running [`page.evaluate`](https://playwright.dev/docs/evaluating) that also injects the required JavaScript libraries needed to render the code. But it's also a bit fancier.
+The library's `plot` function takes the code inside the `chart` function and executes it inside a Chrome window controlled by [playwright](https://github.com/microsoft/playwright/). It's essentially a wrapper around running [`page.evaluate`](https://playwright.dev/docs/evaluating) that also injects the required JavaScript libraries needed to render the code. But it's also a bit fancier.
 
 To have better usability, the library renders your chart twice: Once in a hidden browser window to get the screenshot and a second time in a chromeless window for display. The first render is used to measure the dimensions of the generated chart. Those bounds are then passed to the second render so the display can be sized appropriately. Otherwise, you would see a flicker of resizing. 
