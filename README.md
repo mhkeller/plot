@@ -1,7 +1,7 @@
 Plot
 ===
 
-> A small node library to display charts in popup windows and save them as pngs. Supports [Observablehq/plot](https://observablehq.com/@observablehq/plot), [Vega-lite](https://vega.github.io/vega-lite/) and [Plotly](https://plotly.com/javascript/) out of the box.
+> A small node library to display charts in popup windows and save them as pngs. Supports [Observablehq/plot](https://observablehq.com/@observablehq/plot), [Vega-lite](https://vega.github.io/vega-lite/), [Vega-lite-api](https://vega.github.io/vega-lite-api/) and [Plotly](https://plotly.com/javascript/) out of the box.
 
 - [Motivation](#motivation)
 - [A note on undefined variables](#a-note-on-undefined-variables)
@@ -39,8 +39,8 @@ If your plot function requires a DOM element ID to render into (as Plotly does),
 
 The `plotFunction` can return data specific to the chart library you're using:
 
-* Vega-Lite: Return the JSON spec, it will be passed to `vegaEmbed`.
-* Vega-Lite-API: Return the chart object. It will be called with `toSpec()` and then passed to `vegaEmbed`.
+* Vega-lite: Return the JSON spec, it will be passed to `vegaEmbed`.
+* Vega-lite-api: Return the chart object. It will be called with `toSpec()` and then passed to `vegaEmbed`.
 * ObservableHq/Plot: Return the chart object. It will be called and the HTML will be appended to the 
 
 ```javascript
@@ -121,7 +121,7 @@ await plot(chart, [data], {
 * **options** `{Object}`
   * An options object.
 * **options.library** `{String|String[]='observablehq/plot'}`
-  * Specify what library to load to render the plot. Built-in options are `'observablehq/plot'`, `'vega-lite'` and `'plotly'`. Other strings will be interpreted as custom JavaScript to insert. This field can also be an array of strings, if you need to add multiple scripts.
+  * Specify what library to load to render the plot. Built-in options are `'observablehq/plot'`, `'vega-lite'`, `'vega-lite-api'` and `'plotly'`. Other strings will be interpreted as custom JavaScript to insert. This field can also be an array of strings, if you need to add multiple scripts.
 * **options.outPath** `{String='chart.png'}`
   * A filepath to write the image.
 * **options.view** `{Boolean=false}`
