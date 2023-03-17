@@ -1,26 +1,26 @@
 import { chromium } from 'playwright';
-import { rmSync, existsSync } from 'fs'
 import { join } from 'path';
+import rimraf from 'rimraf';
+import notify from 'wsk-notify';
 
 import { contextPath, getContextOpts } from '../settings/settings.js';
 
-function trashContexts() {
-	if (existsSync(contextPath)) {
-		rmSync(contextPath, {
-			recursive: true
-		});
+async function trashContexts() {
+	try {
+		await rimraf(contextPath);
+	} catch (err) {
+		notify({ m: 'Error cleaning up files. You can manually delete this directory:', v: contextPath, d: ['yellow', 'bold'] });
 	}
 }
 
 export default async function launchContextPage(bounds, instanceNumber, { title } = {}) {
-	trashContexts();
+	await trashContexts();
 	const contextOpts = getContextOpts(bounds, instanceNumber, title);
 
 	const instancePath = join(contextPath, `instance-${instanceNumber}`);
 
 	const context = await chromium.launchPersistentContext(instancePath, contextOpts);
 	const contextPages = await context.pages();
-	// console.log(contextPages);
 	const contextPage = contextPages[0];
 
 	/**
@@ -34,14 +34,13 @@ export default async function launchContextPage(bounds, instanceNumber, { title 
 	/**
 	 * Clean up tmp directory
 	 */
-	context.on('close', () => {
-		trashContexts();
+	context.on('close', async () => {
+		await trashContexts();
 	});
 	/**
 	 * Close the context when this window closes
 	 */
 	contextPage.on('close', async () => {
-		trashContexts();
 		await context.close();
 	});
 

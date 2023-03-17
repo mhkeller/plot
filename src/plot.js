@@ -30,7 +30,7 @@ export default async function plot(
 	/**
 	 * Render the chart
 	 */
-	await render(page, chart, { args, libraryCode, outPath, css, view, title });
+	await render(page, chart, { args, library, libraryCode, outPath, css, view, title });
 
 	if (debug === false) {
 		await browser.close();
