@@ -7,7 +7,7 @@ CHANGELOG
 
 Adds support for [Vega-Lite-API](https://vega.github.io/vega-lite-api/) and simplifies the API for it and for Vega-Lite whereby you an simply return the spec, or spec-producing function instead of calling `vegaEmbed`. Updates Playwright dependency to fix [#9](https://github.com/mhkeller/plot/issues/9).
 
-* [PR #12](https://github.com/mhkeller/layercake/pull/112)
+* [PR #10](https://github.com/mhkeller/plot/pull/10)
 
 # 1.1.0
 
