@@ -68,8 +68,7 @@ const chart = data => {
   };
 }
 
-// Or if using vega-lite-api
-
+// Or, if using vega-lite-api
 const chart = data => {
 	return vl.markBar()
 		.description('A simple bar chart with embedded data.')
