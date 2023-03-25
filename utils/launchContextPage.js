@@ -1,7 +1,7 @@
 import { chromium } from 'playwright';
 import { join } from 'path';
 import rimraf from 'rimraf';
-import notify from 'wsk-notify';
+import notify from '@mhkeller/notify';
 
 import { contextPath, getContextOpts } from '../settings/settings.js';
 

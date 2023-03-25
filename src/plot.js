@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 import { chromium } from 'playwright';
-import notify from 'wsk-notify';
+import notify from '@mhkeller/notify';
 
 import render from '../lib/render.js';
 import getLibraryCode from '../utils/getLibraryCode.js';

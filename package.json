@@ -17,11 +17,11 @@
 	},
 	"homepage": "https://github.com/mhkeller/plot#readme",
 	"dependencies": {
+		"@mhkeller/notify": "^1.0.0",
 		"@observablehq/plot": "^0.6.1",
 		"arquero": "^5.1.0",
 		"playwright": "^1.31.2",
-		"rimraf": "^4.4.0",
-		"wsk-notify": "^1.0.0"
+		"rimraf": "^4.4.0"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.17.5",
