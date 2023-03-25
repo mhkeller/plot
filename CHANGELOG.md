@@ -1,6 +1,14 @@
 CHANGELOG
 ===
 
+# 2.0.2
+
+> 2023-03-25
+
+Update to [@mhkeller/notify](https://github.com/mhkeller/notify) for security fixes.
+
+* [2622889bf50e1e9be914fc653dd55cc935ccccadq](https://github.com/mhkeller/plot/commit/2dce697878fb868f9b5cfd23eae3bc661d6b1e9e)
+
 # 2.0.0
 
 > 2023-03-16
