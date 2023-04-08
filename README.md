@@ -16,6 +16,7 @@ Plot
 
 In notebook-based systems or IDEs like RStudio, it's nice to create a quick chart or map from your data. There aren't that many similar solutions for Node.js, however. This library is a small bridge that allows you to take advantage of these or similar charting libraries such as [observablehq/plot](https://observablehq.com/@observablehq/plot), [vega-lite](https://vega.github.io/vega-lite/), [vega-lite-api](https://vega.github.io/vega-lite-api/) and [plotly](https://plotly.com/javascript/) or others to renders charts in a browser environment directly from a Node script, see the results in a minimal popup window and save the image.
 
+![](_readme-assets/vega-demo.png)
 ![](_readme-assets/hist-demo.png)
 ![](_readme-assets/line-demo.png)
 ![](_readme-assets/map-output.png)
@@ -270,7 +271,7 @@ See the [test](./test/) folder for more.
 
 ## A note on `undefined` variables
 
-Because the chart plotting function only gets executed in the browser context, it will reference global variables that don't exist in your node context. In the examples above, your linter may flag `Plotly` and `Plot` (from @observablehq/plot) as missing. But don't worry, those variables will exist at runtime and you can ignore these warnings.
+Because the chart plotting function only gets executed in the browser context, it may reference global variables that don't exist in your node context. In some of the examples above, your linter may flag `Plotly` and `Plot` (from @observablehq/plot) as missing. But don't worry, those variables will exist at runtime and you can ignore these warnings.
 
 ## How it works
 

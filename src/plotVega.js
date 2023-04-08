@@ -10,8 +10,10 @@ import plot from './plot.js';
  * @param {String} [options.title='Chart'] If `view` is true, add a title to the window's page. A timestamp will be appended to this.
  * @param {Boolean} [options.debug] Whether to run the screenshot browser in headfull mode.
  */
-export default async function plotVega(chart, options) {
+export default async function plotVega(chart, options = {}) {
 	const c = s => s;
 	const spec = typeof chart.toSpec === 'function' ? chart.toSpec() : chart;
-	await plot(c, [spec], { ...options, library: 'vega-lite' });
+	// Add padding for the three dots to appear in the top right corner.
+	const css = `#body {padding-right:40px;} ${options.css || ''}`;
+	await plot(c, [spec], { ...options, library: 'vega-lite', css });
 }
