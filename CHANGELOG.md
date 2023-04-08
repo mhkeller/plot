@@ -7,13 +7,15 @@ CHANGELOG
 
 Breaking change. Set `view` to `true` by default. Adds the `plotVega` export as a convenient and simpler API for plotting Vega-Lite specs and [Vega-Lite-API](https://github.com/vega/vega-lite-api) charts.
 
+* [e13a9704ab6cf90b4da43834bf24ff9bd785b3e1](https://github.com/mhkeller/plot/commit/e13a9704ab6cf90b4da43834bf24ff9bd785b3e1)
+* 
 # 2.0.2
 
 > 2023-03-25
 
 Update to [@mhkeller/notify](https://github.com/mhkeller/notify) for security fixes.
 
-* [2622889bf50e1e9be914fc653dd55cc935ccccadq](https://github.com/mhkeller/plot/commit/2dce697878fb868f9b5cfd23eae3bc661d6b1e9e)
+* [2dce697878fb868f9b5cfd23eae3bc661d6b1e9e](https://github.com/mhkeller/plot/commit/2dce697878fb868f9b5cfd23eae3bc661d6b1e9e)
 
 # 2.0.0
 
