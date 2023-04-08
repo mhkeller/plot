@@ -3,15 +3,10 @@ import plotVega from '../src/plotVega.js';
 
 const data = {
 	values: [
-		{ a: 'A', b: 28 },
-		{ a: 'B', b: 55 },
-		{ a: 'C', b: 43 },
-		{ a: 'D', b: 91 },
-		{ a: 'E', b: 81 },
-		{ a: 'F', b: 53 },
-		{ a: 'G', b: 19 },
-		{ a: 'H', b: 87 },
-		{ a: 'I', b: 52 }
+		{ category: 'A', value: 28 },
+		{ category: 'B', value: 55 },
+		{ category: 'C', value: 43 },
+		{ category: 'D', value: 91 },
 	]
 };
 
@@ -21,8 +16,8 @@ const spec = {
 	data,
 	mark: 'bar',
 	encoding: {
-		x: { field: 'a', type: 'ordinal' },
-		y: { field: 'b', type: 'quantitative' }
+		x: { field: 'category', type: 'ordinal' },
+		y: { field: 'value', type: 'quantitative' }
 	}
 };
 

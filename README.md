@@ -4,10 +4,12 @@ Plot
 > A small node library to display charts in popup windows and save them as pngs. Supports [Observablehq/plot](https://observablehq.com/@observablehq/plot), [Vega-lite](https://vega.github.io/vega-lite/), [Vega-lite-api](https://vega.github.io/vega-lite-api/) and [Plotly](https://plotly.com/javascript/) out of the box.
 
 - [Motivation](#motivation)
-- [A note on undefined variables](#a-note-on-undefined-variables)
 - [Installing](#installing)
-- [Functions](#functions)
+- [Plotting Vega-Lite charts](#plotting-vega-lite-charts)
+- [Plotting histograms](#plotting-histograms)
+- [Generic plotting](#generic-plotting)
 - [Examples](#examples)
+- [A note on `undefined` variables](#a-note-on-undefined-variables)
 - [How it works](#how-it-works)
 
 ## Motivation
@@ -19,17 +21,134 @@ In notebook-based systems or IDEs like RStudio, it's nice to create a quick char
 ![](_readme-assets/map-output.png)
 ![](_readme-assets/map-code.png)
 
-## A note on undefined variables
-
-Because the chart plotting function only gets executed in the browser context, it will reference global variables that don't exist in your node context. In the examples above, your linter may flag `Plotly` and `Plot` (from @observablehq/plot) as missing. But don't worry, those variables will exist at runtime and you can ignore these warnings.
-
 ## Installing
 
 ```
 npm install @mhkeller/plot
 ```
 
-## Functions
+## Plotting Vega-Lite charts
+
+**plotVega(** `chartConfig: Object, options: Object` **)**
+
+```js
+import { plotVega } from '@mhkeller/plot'
+import * as vl from 'vega-lite-api';
+
+const data = [
+	{ category: 'A', value: 28 },
+	{ category: 'B', value: 55 },
+	{ category: 'C', value: 43 },
+	{ category: 'D', value: 91 },
+];
+
+const chart = vl
+	.markBar()
+	.description('A simple bar chart.')
+	.data(data)
+	.encode(
+		vl.x().fieldO('category'),
+		vl.y().fieldQ('value')
+	);
+
+await plotVega(chart);
+```
+
+You can also supply a Vega-Lite JSON spec:
+
+```js
+import { plotVega } from '@mhkeller/plot'
+
+const data = {
+	values: [
+		{ category: 'A', value: 28 },
+		{ category: 'B', value: 55 },
+		{ category: 'C', value: 43 },
+		{ category: 'D', value: 91 },
+	]
+};
+
+const spec = {
+	$schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+	description: 'A simple bar chart.',
+	data,
+	mark: 'bar',
+	encoding: {
+		x: { field: 'category', type: 'ordinal' },
+		y: { field: 'value', type: 'quantitative' }
+	}
+};
+
+await plotVega(spec);
+```
+
+*Arguments*
+
+* **chartConfig** `{Object}`
+  * A Vega-Lite-API chart or a Vega-Lite spec.. **(required)**
+* **options** `{Object}`
+  * An options object.
+* **options.outPath** `{String='chart.png'}`
+  * A filepath to write the image.
+* **options.view** `{Boolean=true}`
+  * If true, show the chart in a popup window.
+* **options.title** `{String='Chart'}`
+  * If `view` is true, add a title to the window's page. A timestamp will be appended to this.
+* **options.css** `{String}`
+  * Any CSS that you want injected into the page to tweak styles.
+* **options.debug** `{Boolean = false}`
+  * Whether to run the screenshot browser in headfull mode.
+
+## Plotting histograms
+
+**plotHistogram(** `data: Array, { facetBy: String[], fields: String{}, outDir: String[, name: String, fill: String='#000', css: String, view: false] } }` **)**
+
+A more specific function that takes data, a list of fields to facet by and a list of fields to compute values for. Writes a screenshot.
+
+```javascript
+import { plotHistogram } from '@mhkeller/plot`;
+
+plotHistogram(data, { 
+ facetBy: ['group'], 
+ fields: ['value', 'value2'], 
+ outDir: 'out_images', 
+ name: 'my-charts', 
+ fill: 'group', 
+ view: true
+});
+```
+
+*Arguments*
+
+* **data** `{Array}`
+  * Your data to render. **(required)**
+* **options** `{Object}`
+  * An options object.
+* **options.facetBy** `{String[]}`
+  * An array of field names to facet by. These facets are not combined, it's just a shorthand for running multiple facets at a time, done separately in succession. **(required)**
+* **options.fields** `{String[]}`
+  * An array of fields to compute histogram values for. **(required)**
+* **options.outDir** `{String}`
+  * The *directory* – not a specific file name – to write the various files out to. **(required)**
+  * Filenames are generated according to the convention: 
+    * With a `name` supplied: `${name}_by__${facet}_${field}.png`;
+    * With no `name` supplied: `by__${facet}_${field}.png`;
+    * If `breakoutFields=false` `_${field}` is a concatenation of all fields separated by a `|` character.
+    * If `columns=false`, the file name will end in `_lines.png`.
+* **options.fill** `{String}`
+  * A hex code or field name. Defaults to `'#000'`.
+* **options.view** `{Boolean=true}`
+  * If true, show the chart in a popup window.
+* **options.css** `{String}`
+  * Any CSS that you want injected into the page to tweak styles.
+* **options.breakoutFields** `{Boolean=true}`
+  * For each field passed into `options.fields` write out a separate PNG. Set this to false to put everything on the same scale.
+* **options.columns** `{Boolean=true}`
+  * Draw the histogram as columns, like a regular histogram. If this is `false`, just draw semi-opaque lines, which can be useful for seeing density.
+* **options.debug** `{Boolean = false}`
+  * Whether to run the screenshot browser in headfull mode.
+
+## Generic plotting
 
 **plot(** `plotFunction: Function, args: Array, options: Object` **)**
 
@@ -136,67 +255,22 @@ await plot(chart, [data], {
   * Specify what library to load to render the plot. Built-in options are `'observablehq/plot'`, `'vega-lite'`, `'vega-lite-api'` and `'plotly'`. Other strings will be interpreted as custom JavaScript to insert. This field can also be an array of strings, if you need to add multiple scripts.
 * **options.outPath** `{String='chart.png'}`
   * A filepath to write the image.
-* **options.view** `{Boolean=false}`
+* **options.view** `{Boolean=true}`
   * If true, show the chart in a popup window.
 * **options.title** `{String='My chart'}`
-  * If `view` is true, add a title to the window's page.
+  * If `view` is true, add a title to the window's page. A timestamp will be appended to this.
 * **options.css** `{String}`
   * Any CSS that you want injected into the page to tweak styles.
-* **options.debug** `{Boolean = false}`
-  * Whether to run the screenshot browser in headfull mode.
-
-**plotHistogram(** `data: Array, { facetBy: String[], fields: String{}, outDir: String[, name: String, fill: String='#000', css: String, view: false] } }` **)**
-
-A more specific function that takes data, a list of fields to facet by and a list of fields to compute values for. Writes a screenshot.
-
-```javascript
-import { plotHistogram } from '@mhkeller/plot`;
-
-plotHistogram(data, { 
- facetBy: ['group'], 
- fields: ['value', 'value2'], 
- outDir: 'out_images', 
- name: 'my-charts', 
- fill: 'group', 
- view: true
-});
-```
-
-*Arguments*
-
-* **data** `{Array}`
-  * Your data to render. **(required)**
-* **options** `{Object}`
-  * An options object.
-* **options.facetBy** `{String[]}`
-  * An array of field names to facet by. These facets are not combined, it's just a shorthand for running multiple facets at a time, done separately in succession. **(required)**
-* **options.fields** `{String[]}`
-  * An array of fields to compute histogram values for. **(required)**
-* **options.outDir** `{String}`
-  * The *directory* – not a specific file name – to write the various files out to. **(required)**
-  * Filenames are generated according to the convention: 
-    * With a `name` supplied: `${name}_by__${facet}_${field}.png`;
-    * With no `name` supplied: `by__${facet}_${field}.png`;
-    * If `breakoutFields=false` `_${field}` is a concatenation of all fields separated by a `|` character.
-    * If `columns=false`, the file name will end in `_lines.png`.
-* **options.fill** `{String}`
-  * A hex code or field name. Defaults to `'#000'`.
-* **options.view** `{Boolean=false}`
-  * If true, show the chart in a popup window.
-* **options.title** `{String='My chart'}`
-  * If `view` is true, add a title to the window's page.
-* **options.css** `{String}`
-  * Any CSS that you want injected into the page to tweak styles.
-* **options.breakoutFields** `{Boolean=true}`
-  * For each field passed into `options.fields` write out a separate PNG. Set this to false to put everything on the same scale.
-* **options.columns** `{Boolean=true}`
-  * Draw the histogram as columns, like a regular histogram. If this is `false`, just draw semi-opaque lines, which can be useful for seeing density.
 * **options.debug** `{Boolean = false}`
   * Whether to run the screenshot browser in headfull mode.
 
 ## Examples
 
 See the [test](./test/) folder for more.
+
+## A note on `undefined` variables
+
+Because the chart plotting function only gets executed in the browser context, it will reference global variables that don't exist in your node context. In the examples above, your linter may flag `Plotly` and `Plot` (from @observablehq/plot) as missing. But don't worry, those variables will exist at runtime and you can ignore these warnings.
 
 ## How it works
 
