@@ -1,6 +1,12 @@
 CHANGELOG
 ===
 
+# 3.0.0
+
+> 2023-04-07
+
+Breaking change. Set `view` to `true` by default. Adds the `plotVega` export as a convenient and simpler API for plotting Vega-Lite specs and [Vega-Lite-API](https://github.com/vega/vega-lite-api) charts.
+
 # 2.0.2
 
 > 2023-03-25

@@ -16,7 +16,7 @@ import getLibraryCode from '../utils/getLibraryCode.js';
  * @param {String} [options.outDir] The *directory* – not a specific file name – to write the various files out to.
  * @param {String} [options.fill='#000'] A hex code or field name. Defaults to `'#000'`.
  * @param {String} [options.css] Any CSS that you want injected into the page to tweak styles.
- * @param {Boolean} [options.view=false] If true, show the chart in a popup window.
+ * @param {Boolean} [options.view=true] If true, show the chart in a popup window.
  * @param {String} [options.breakoutFields=true] For each field passed into `options.fields` write out a separate PNG. Set this to false to put everything on the same scale.
  * @param {String} [options.columns=true] Draw columns. If `false`, only draw lines.
  */
@@ -29,7 +29,7 @@ export default async function plotHistogram(
 		outDir,
 		fill = '#000',
 		css,
-		view = false,
+		view = true,
 		breakoutFields = true,
 		columns = true,
 		debug = false
