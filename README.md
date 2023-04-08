@@ -37,20 +37,20 @@ import { plotVega } from '@mhkeller/plot'
 import * as vl from 'vega-lite-api';
 
 const data = [
-	{ category: 'A', value: 28 },
-	{ category: 'B', value: 55 },
-	{ category: 'C', value: 43 },
-	{ category: 'D', value: 91 },
+  { category: 'A', value: 28 },
+  { category: 'B', value: 55 },
+  { category: 'C', value: 43 },
+  { category: 'D', value: 91 },
 ];
 
 const chart = vl
-	.markBar()
-	.description('A simple bar chart.')
-	.data(data)
-	.encode(
-		vl.x().fieldO('category'),
-		vl.y().fieldQ('value')
-	);
+  .markBar()
+  .description('A simple bar chart.')
+  .data(data)
+  .encode(
+    vl.x().fieldO('category'),
+    vl.y().fieldQ('value')
+  );
 
 await plotVega(chart);
 ```
@@ -61,23 +61,23 @@ You can also supply a Vega-Lite JSON spec:
 import { plotVega } from '@mhkeller/plot'
 
 const data = {
-	values: [
-		{ category: 'A', value: 28 },
-		{ category: 'B', value: 55 },
-		{ category: 'C', value: 43 },
-		{ category: 'D', value: 91 },
-	]
+  values: [
+    { category: 'A', value: 28 },
+    { category: 'B', value: 55 },
+    { category: 'C', value: 43 },
+    { category: 'D', value: 91 },
+  ]
 };
 
 const spec = {
-	$schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-	description: 'A simple bar chart.',
-	data,
-	mark: 'bar',
-	encoding: {
-		x: { field: 'category', type: 'ordinal' },
-		y: { field: 'value', type: 'quantitative' }
-	}
+  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+  description: 'A simple bar chart.',
+  data,
+  mark: 'bar',
+  encoding: {
+    x: { field: 'category', type: 'ordinal' },
+    y: { field: 'value', type: 'quantitative' }
+  }
 };
 
 await plotVega(spec);
