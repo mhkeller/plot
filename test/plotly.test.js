@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import plot from '../src/plot.js';
 
 const trace1 = {
