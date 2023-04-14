@@ -33,6 +33,7 @@ const chartLayout = {
 const dataset = [trace1, trace2];
 
 const chart = (data, layout) => {
+	// eslint-disable-next-line no-undef
 	Plotly.newPlot('body', data, layout);
 };
 
