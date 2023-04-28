@@ -35,8 +35,8 @@ npm install @mhkeller/plot
 
 *Arguments*
 
-* **chartConfig** `{Object}`
-  * A Vega-Lite-API chart or a Vega-Lite spec.. **(required)**
+* **chartConfig** `{Object}` **(required)**
+  * A Vega-Lite-API chart or a Vega-Lite spec..
 * **options** `{Object}`
   * An options object.
 * **options.outPath** `{String='chart.png'}`
@@ -107,9 +107,9 @@ await plotVega(spec);
 
 *Arguments*
 
-* **chart** `{Function}`
-  * An @observablehq/plot function. The first argument should be your dataset. **required**
-* **data** `Array`
+* **chart** `{Function}` **required**
+  * An @observablehq/plot function. The first argument should be your dataset.
+* **data** `Array` **required**
   * The data to pass in to the chart function.
 * **options** `{Object}`
   * An options object.
@@ -177,16 +177,16 @@ plotHistogram(data, {
 
 *Arguments*
 
-* **data** `{Array}`
-  * Your data to render. **(required)**
+* **data** `{Array}` **(required)**
+  * Your data to render. 
 * **options** `{Object}`
-  * An options object.
-* **options.facetBy** `{String[]}`
-  * An array of field names to facet by. These facets are not combined, it's just a shorthand for running multiple facets at a time, done separately in succession. **(required)**
-* **options.fields** `{String[]}`
-  * An array of fields to compute histogram values for. **(required)**
-* **options.outDir** `{String}`
-  * The *directory* – not a specific file name – to write the various files out to. **(required)**
+  * An options object. 
+* **options.facetBy** `{String[]}`**(required)**
+  * An array of field names to facet by. These facets are not combined, it's just a shorthand for running multiple facets at a time, done separately in succession. 
+* **options.fields** `{String[]}` **(required)**
+  * An array of fields to compute histogram values for. 
+* **options.outDir** `{String}` **(required)**
+  * The *directory* – not a specific file name – to write the various files out to. 
   * Filenames are generated according to the convention: 
     * With a `name` supplied: `${name}_by__${facet}_${field}.png`;
     * With no `name` supplied: `by__${facet}_${field}.png`;
@@ -302,10 +302,10 @@ await plot(chart, [data], {
 
 *Arguments*
 
-* **chart** `{Function}`
-  * A function that accepts a dataset and returns a function that renders a chart. **(required)**
-* **arguments** `{Function}`
-  * An array of arguments that go into your chart function. This will be the data plus any others you may need. **(required)**
+* **chart** `{Function}` **(required)**
+  * A function that accepts a dataset and returns a function that renders a chart. 
+* **arguments** `{Function}` **(required)**
+  * An array of arguments that go into your chart function. This will be the data plus any others you may need. 
 * **options** `{Object}`
   * An options object.
 * **options.library** `{String|String[]='observablehq/plot'}`
