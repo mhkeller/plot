@@ -133,24 +133,24 @@ import { plotObservable } from '@observablehq/plot';
 const events = readDataSync('./test/data/purchase_data.csv');
 
 const dataset = aq
-	.from(events)
-	.derive({ date: aq.escape(d => new Date(d.date.split('T')[0])) })
-	.groupby('date', 'brand')
-	.rollup({ value: d => aq.op.sum(d.price_in_usd) })
-	.orderby('date', 'brand')
-	.objects();
+  .from(events)
+  .derive({ date: aq.escape(d => new Date(d.date.split('T')[0])) })
+  .groupby('date', 'brand')
+  .rollup({ value: d => aq.op.sum(d.price_in_usd) })
+  .orderby('date', 'brand')
+  .objects();
 
 const chart = data => Plot.plot({
-	marks: [
-		Plot.line(data, {
-			x: 'date',
-			y: 'value',
-			stroke: 'brand'
-		})
-	],
-	color: {
-		legend: true
-	}
+  marks: [
+    Plot.line(data, {
+      x: 'date',
+      y: 'value',
+      stroke: 'brand'
+    })
+  ],
+  color: {
+    legend: true
+  }
 });
 
 await plotObservable(chart, dataset);
@@ -246,13 +246,13 @@ const chart = data => {
 
 // Or, if using vega-lite-api
 const chart = data => {
-	return vl.markBar()
-		.description('A simple bar chart with embedded data.')
-		.data(data)
-		.encode(
-			vl.x().fieldO('a'),
-			vl.y().fieldQ('b')
-		)
+  return vl.markBar()
+    .description('A simple bar chart with embedded data.')
+    .data(data)
+    .encode(
+      vl.x().fieldO('a'),
+      vl.y().fieldQ('b')
+    )
 }
 
 await plot(chart, [dataset], {
