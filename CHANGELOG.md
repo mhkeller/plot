@@ -1,6 +1,12 @@
 CHANGELOG
 ===
 
+# 3.1.0
+
+> 2023-04-29
+
+Add the `plotObservable` function as a shorthand for using Observablehq/plot charts.
+
 # 3.0.0
 
 > 2023-04-07
