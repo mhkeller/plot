@@ -7,7 +7,8 @@ import getLibraryCode from '../utils/getLibraryCode.js';
 
 /**
  * Plot HTML
- * @param {Function|Object} [chart] An async function that returns a function that returns HTML.
+ * @param {Function|Object} [chart] A function that returns an HTML-returning function.
+ * @param {Array} [args] Arguments to pass to the chart function. This should match the signature of your chart function and will almost always include your data to render.
  * @param {String} [options] Options
  * @param {String|String[]} [options.library] Specify what library to load to render the plot. Built-in options are `'observablehq/plot'`, `'vega-lite'` and `'plotly'`. Other strings will be interpreted as custom JavaScript to insert. This field can also be an array of strings, if you need to add multiple scripts.
  * @param {Boolean} [options.view=true] If true, show the chart in a popup window.

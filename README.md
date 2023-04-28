@@ -6,6 +6,7 @@ Plot
 - [Motivation](#motivation)
 - [Installing](#installing)
 - [Plotting Vega-Lite charts](#plotting-vega-lite-charts)
+- [Plotting Observablehq/plot charts](#plotting-observablehqplot-charts)
 - [Plotting histograms](#plotting-histograms)
 - [Generic plotting](#generic-plotting)
 - [Examples](#examples)
@@ -31,6 +32,23 @@ npm install @mhkeller/plot
 ## Plotting Vega-Lite charts
 
 **plotVega(** `chartConfig: Object, options: Object` **)**
+
+*Arguments*
+
+* **chartConfig** `{Object}`
+  * A Vega-Lite-API chart or a Vega-Lite spec.. **(required)**
+* **options** `{Object}`
+  * An options object.
+* **options.outPath** `{String='chart.png'}`
+  * A filepath to write the image.
+* **options.view** `{Boolean=true}`
+  * If true, show the chart in a popup window.
+* **options.title** `{String='Chart'}`
+  * If `view` is true, add a title to the window's page. A timestamp will be appended to this.
+* **options.css** `{String}`
+  * Any CSS that you want injected into the page to tweak styles.
+* **options.debug** `{Boolean = false}`
+  * Whether to run the screenshot browser in headfull mode.
 
 ```js
 import { plotVega } from '@mhkeller/plot'
@@ -83,10 +101,14 @@ const spec = {
 await plotVega(spec);
 ```
 
+## Plotting Observablehq/plot charts
+
+**plotObservable(** `chart: Function, data: Array, options: Object` **)**
+
 *Arguments*
 
-* **chartConfig** `{Object}`
-  * A Vega-Lite-API chart or a Vega-Lite spec.. **(required)**
+* **chart** `{Object}`
+  * A Function chart or a Vega-Lite spec.. **(required)**
 * **options** `{Object}`
   * An options object.
 * **options.outPath** `{String='chart.png'}`
