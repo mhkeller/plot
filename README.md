@@ -107,8 +107,10 @@ await plotVega(spec);
 
 *Arguments*
 
-* **chart** `{Object}`
-  * A Function chart or a Vega-Lite spec.. **(required)**
+* **chart** `{Function}`
+  * An @observablehq/plot function. The first argument should be your dataset. **required**
+* **data** `Array`
+  * The data to pass in to the chart function.
 * **options** `{Object}`
   * An options object.
 * **options.outPath** `{String='chart.png'}`
