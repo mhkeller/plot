@@ -125,7 +125,6 @@ await plotVega(spec);
   * Whether to run the screenshot browser in headfull mode.
 
 ```js
-/* eslint-disable no-undef */
 import { readDataSync } from 'indian-ocean';
 import * as aq from 'arquero';
 
@@ -146,19 +145,11 @@ const chart = data => Plot.plot({
 		Plot.line(data, {
 			x: 'date',
 			y: 'value',
-			stroke: 'brand',
-			strokeWidth: 2,
-			curve: 'linear'
+			stroke: 'brand'
 		})
 	],
-	width: 554,
-	height: 130,
-	x: { ticks: 3 },
-	marginLeft: 50,
 	color: {
-		legend: true,
-		width: 554,
-		columns: '120px'
+		legend: true
 	}
 });
 
