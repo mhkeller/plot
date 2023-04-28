@@ -3,9 +3,11 @@ CHANGELOG
 
 # 3.1.0
 
-> 2023-04-29
+> not yet on npm
 
 Add the `plotObservable` function as a shorthand for using Observablehq/plot charts.
+
+* [8aebca2ce9379c090d7269c76053b2199a363f72](https://github.com/mhkeller/plot/commit/8aebca2ce9379c090d7269c76053b2199a363f72)
 
 # 3.0.0
 
