@@ -20,6 +20,7 @@
 		"@mhkeller/notify": "^1.0.0",
 		"@observablehq/plot": "^0.6.1",
 		"arquero": "^5.1.0",
+		"jsdom": "^21.1.1",
 		"playwright": "^1.31.2",
 		"rimraf": "^4.4.0"
 	},

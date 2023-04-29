@@ -11,6 +11,6 @@ import plot from './plot.js';
  * @param {String} [options.title='Chart'] If `view` is true, add a title to the window's page. A timestamp will be appended to this.
  * @param {Boolean} [options.debug] Whether to run the screenshot browser in headfull mode.
  */
-export default async function plotObservable(chart, data, options = {}) {
-	await plot(chart, [data], { ...options, library: 'observablehq/plot' });
+export default async function plotObservable(chart, options = {}) {
+	await plot(s => s, [chart.outerHTML], { ...options, library: 'observablehq/plot' });
 }

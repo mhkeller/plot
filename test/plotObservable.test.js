@@ -1,12 +1,13 @@
 /* eslint-disable no-undef */
 import { readDataSync } from 'indian-ocean';
 import * as aq from 'arquero';
+import * as Plot from '@observablehq/plot';
 
-import plotObservable from '../src/plotObservable.js';
+import { plotObservable, createDocument } from '../index.js';
 
 const events = readDataSync('./test/data/purchase_data.csv');
 
-const dataset = aq
+const data = aq
 	.from(events)
 	.derive({ date: aq.escape(d => new Date(d.date.split('T')[0])) })
 	.groupby('date', 'brand')
@@ -14,7 +15,8 @@ const dataset = aq
 	.orderby('date', 'brand')
 	.objects();
 
-const chart = data => Plot.plot({
+const chart = Plot.plot({
+	document: createDocument(),
 	marks: [
 		Plot.line(data, {
 			x: 'date',
@@ -35,4 +37,4 @@ const chart = data => Plot.plot({
 	}
 });
 
-await plotObservable(chart, dataset);
+await plotObservable(chart);
