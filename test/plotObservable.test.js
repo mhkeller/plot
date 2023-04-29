@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { readDataSync } from 'indian-ocean';
 import * as aq from 'arquero';
 import * as Plot from '@observablehq/plot';
