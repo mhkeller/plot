@@ -103,6 +103,8 @@ await plotVega(spec);
 
 ## Plotting Observablehq/plot charts
 
+> Note: You have to pass in a `document` element using the exported `createDocument` function. See the example below.
+
 **plotObservable(** `chart: Function, data: Array, options: Object` **)**
 
 *Arguments*
@@ -128,11 +130,11 @@ await plotVega(spec);
 import { readDataSync } from 'indian-ocean';
 import * as aq from 'arquero';
 
-import { plotObservable } from '@observablehq/plot';
+import { plotObservable, createDocument } from '@mhkeller/plot';
 
 const events = readDataSync('./test/data/purchase_data.csv');
 
-const dataset = aq
+const data = aq
   .from(events)
   .derive({ date: aq.escape(d => new Date(d.date.split('T')[0])) })
   .groupby('date', 'brand')
@@ -140,7 +142,8 @@ const dataset = aq
   .orderby('date', 'brand')
   .objects();
 
-const chart = data => Plot.plot({
+const chart = Plot.plot({
+  document: createDocument(),
   marks: [
     Plot.line(data, {
       x: 'date',
@@ -151,9 +154,9 @@ const chart = data => Plot.plot({
   color: {
     legend: true
   }
-});
+};
 
-await plotObservable(chart, dataset);
+await plotObservable(chart);
 ```
 
 ## Plotting histograms
