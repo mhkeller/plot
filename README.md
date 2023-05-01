@@ -22,19 +22,19 @@ Plot
 In notebook-based systems or IDEs like RStudio, it's nice to create a quick chart or map from your data. There aren't that many similar solutions for Node.js, however. This library is a small bridge that allows you to take advantage of these or similar charting libraries such as [observablehq/plot](https://observablehq.com/@observablehq/plot), [vega-lite](https://vega.github.io/vega-lite/), [vega-lite-api](https://vega.github.io/vega-lite-api/) and [plotly](https://plotly.com/javascript/) or others to renders charts in a browser environment directly from a Node script, see the results in a minimal popup window and save the image.
 
 
-##### Vega example
+**Vega example**
 
 ![](_readme-assets/vega-demo.png)
 
-##### Observablehq/plot example
+**Observablehq/plot example**
 
 ![](_readme-assets/line-demo.png)
 
-##### Histogram example
+**Histogram example**
 
 ![](_readme-assets/hist-demo.png)
 
-##### Plotly (choropleth map) example
+**Plotly (choropleth map) example**
 
 ![](_readme-assets/map-code.png)
 ![](_readme-assets/map-output.png)
