@@ -1,6 +1,6 @@
 {
 	"name": "@mhkeller/plot",
-	"version": "3.0.0",
+	"version": "3.1.0",
 	"description": "A node library to display charts in popup windows and save them as pngs. Supports observablehq/plot and plotly out of the box. ",
 	"main": "index.js",
 	"type": "module",
