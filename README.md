@@ -20,8 +20,8 @@ In notebook-based systems or IDEs like RStudio, it's nice to create a quick char
 ![](_readme-assets/vega-demo.png)
 ![](_readme-assets/hist-demo.png)
 ![](_readme-assets/line-demo.png)
-![](_readme-assets/map-output.png)
 ![](_readme-assets/map-code.png)
+![](_readme-assets/map-output.png)
 
 ## Installing
 
