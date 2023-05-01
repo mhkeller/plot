@@ -8,6 +8,7 @@ CHANGELOG
 Add the `plotObservable` function as a shorthand for using Observablehq/plot charts.
 
 * [8aebca2ce9379c090d7269c76053b2199a363f72](https://github.com/mhkeller/plot/commit/8aebca2ce9379c090d7269c76053b2199a363f72)
+* [4157440156d412275d7a4f0c2a23de2e4a99144c](https://github.com/mhkeller/plot/commit/4157440156d412275d7a4f0c2a23de2e4a99144c)
 
 # 3.0.0
 
