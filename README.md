@@ -4,10 +4,6 @@ Plot
 > A small node library to display charts in popup windows and save them as pngs. Supports [Observablehq/plot](https://observablehq.com/@observablehq/plot), [Vega-lite](https://vega.github.io/vega-lite/), [Vega-lite-api](https://vega.github.io/vega-lite-api/) and [Plotly](https://plotly.com/javascript/) out of the box.
 
 - [Motivation](#motivation)
-      - [Vega example](#vega-example)
-      - [Observablehq/plot example](#observablehqplot-example)
-      - [Histogram example](#histogram-example)
-      - [Plotly (choropleth map) example](#plotly-choropleth-map-example)
 - [Installing](#installing)
 - [Plotting Vega-Lite charts](#plotting-vega-lite-charts)
 - [Plotting Observablehq/plot charts](#plotting-observablehqplot-charts)
