@@ -51,8 +51,8 @@ npm install @mhkeller/plot
   * A Vega-Lite-API chart or a Vega-Lite spec..
 * **options** `{Object}`
   * An options object.
-* **options.outPath** `{String='chart.png'}`
-  * A filepath to write the image.
+* **options.outPath** `{String}`
+  * If specified, an image will be written to this path as a png.
 * **options.view** `{Boolean=true}`
   * If true, show the chart in a popup window.
 * **options.title** `{String='Chart'}`
@@ -127,8 +127,8 @@ await plotVega(spec);
   * The data to pass in to the chart function.
 * **options** `{Object}`
   * An options object.
-* **options.outPath** `{String='chart.png'}`
-  * A filepath to write the image.
+* **options.outPath** `{String}`
+  * If specified, an image will be written to this path as a png.
 * **options.view** `{Boolean=true}`
   * If true, show the chart in a popup window.
 * **options.title** `{String='Chart'}`
@@ -325,8 +325,8 @@ await plot(chart, [data], {
   * An options object.
 * **options.library** `{String|String[]='observablehq/plot'}`
   * Specify what library to load to render the plot. Built-in options are `'observablehq/plot'`, `'vega-lite'`, `'vega-lite-api'` and `'plotly'`. Other strings will be interpreted as custom JavaScript to insert. This field can also be an array of strings, if you need to add multiple scripts.
-* **options.outPath** `{String='chart.png'}`
-  * A filepath to write the image.
+* **options.outPath** `{String}`
+  * If specified, an image will be written to this path as a png.
 * **options.view** `{Boolean=true}`
   * If true, show the chart in a popup window.
 * **options.title** `{String='My chart'}`
