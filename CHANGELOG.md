@@ -1,6 +1,12 @@
 CHANGELOG
 ===
 
+# 3.2.0
+
+> Not yet on npm
+
+Render all of the charts in one chromium instance. A second instance will be launched if the value of `debug` changes.
+
 # 3.1.0
 
 > 2023-05-01

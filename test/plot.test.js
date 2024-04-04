@@ -42,3 +42,9 @@ await plot(chart, [dataset], {
 	view: true,
 	title: 'Line chart'
 });
+await plot(chart, [dataset], {
+	library: 'observablehq/plot',
+	outPath: 'test/tmp/line-plot.png',
+	view: true,
+	title: 'Line chart'
+});

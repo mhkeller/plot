@@ -1,8 +1,8 @@
 /* eslint-disable no-restricted-syntax */
-import { chromium } from 'playwright';
 import notify from '@mhkeller/notify';
 
 import render from '../lib/render.js';
+import getBrowser from '../lib/getBrowser.js';
 import getLibraryCode from '../utils/getLibraryCode.js';
 
 /**
@@ -24,7 +24,7 @@ export default async function plot(
 ) {
 	notify({ m: 'Generating plot...', v: outPath, d: ['magenta', 'bold'] });
 
-	const browser = await chromium.launch({ headless: !debug });
+	const browser = await getBrowser(debug);
 	const page = await browser.newPage();
 
 	const libraryCode = getLibraryCode(library);
@@ -35,6 +35,6 @@ export default async function plot(
 	await render(page, chart, { args, library, libraryCode, outPath, css, view, title });
 
 	if (debug === false) {
-		await browser.close();
+		// await browser.close();
 	}
 }
